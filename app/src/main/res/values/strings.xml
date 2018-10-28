@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">AppDev</string>
+
+    <!-- LOGIN STRINGS -->
+    <string name="login_fr_passwd_reset">Mot de passe oublié ?</string>
+    <string name="login_fr_inscription">S\'inscrire</string>
+
+    <string name="login_en_inscription">Register</string>
+    <string name="login_en_passwd_reset">Forgot password ?</string>
+
+    <!-- inscription STRINGS -->
+    <string name="inscription_fr_question">Vous êtes...</string>
+
+
+    <!-- password reset Strings -->
+    <string name="passwdReset_fr_email">Votre email</string>
+
+
+
+    <string name="languageChoice_fr_top_text">Choisissez votre langue</string>
+</resources>

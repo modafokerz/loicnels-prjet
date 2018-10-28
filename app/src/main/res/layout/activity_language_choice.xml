@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LanguageChoiceActivity">
+
+
+    <ImageView
+        android:id="@+id/languageChoice_ita_flag"
+        android:layout_width="152dp"
+        android:layout_height="95dp"
+        app:layout_constraintBottom_toTopOf="@+id/languageChoice_eng_flag"
+        app:layout_constraintEnd_toEndOf="@+id/languageChoice_eng_flag"
+        app:layout_constraintStart_toStartOf="@+id/languageChoice_eng_flag"
+        app:layout_constraintTop_toBottomOf="@+id/languageChoice_fr_flag"
+        app:srcCompat="@drawable/ita_flag" />
+
+    <ImageView
+        android:id="@+id/languageChoice_eng_flag"
+        android:layout_width="152dp"
+        android:layout_height="95dp"
+        app:layout_constraintBottom_toTopOf="@+id/languageChoice_ger_flag"
+        app:layout_constraintEnd_toEndOf="@+id/languageChoice_ger_flag"
+        app:layout_constraintStart_toStartOf="@+id/languageChoice_ger_flag"
+        app:layout_constraintTop_toBottomOf="@+id/languageChoice_ita_flag"
+        app:srcCompat="@drawable/eng_flag" />
+
+    <ImageView
+        android:id="@+id/languageChoice_ger_flag"
+        android:layout_width="152dp"
+        android:layout_height="95dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/languageChoice_eng_flag"
+        app:srcCompat="@drawable/ger_flag" />
+
+    <ImageView
+        android:id="@+id/languageChoice_fr_flag"
+        android:layout_width="152dp"
+        android:layout_height="95dp"
+        app:layout_constraintBottom_toTopOf="@+id/languageChoice_ita_flag"
+        app:layout_constraintEnd_toEndOf="@+id/languageChoice_ita_flag"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/languageChoice_ita_flag"
+        app:layout_constraintTop_toBottomOf="@+id/languageChoice_topText"
+        app:srcCompat="@drawable/fr_flag" />
+
+    <TextView
+        android:id="@+id/languageChoice_topText"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:text="@string/languageChoice_fr_top_text"
+        app:layout_constraintBottom_toTopOf="@+id/languageChoice_fr_flag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
