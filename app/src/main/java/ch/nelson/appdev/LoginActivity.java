@@ -31,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private LoginActivity activity;
     private static final String langNameFile = "lang_pref.txt";
 
+    private EditText emailInput, passwdInput;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +55,8 @@ public class LoginActivity extends AppCompatActivity {
          * Les ressources dont on a besoin, btns, texte, etc.
          */
         Button loginBtn = findViewById(R.id.login_btn);
-        final EditText emailInput = findViewById(R.id.login_email_input);
-        final EditText passwdInput = findViewById(R.id.login_passwd_input);
+        emailInput = findViewById(R.id.login_email_input);
+        passwdInput = findViewById(R.id.login_passwd_input);
         this.activity = this;
         TextView resetPasswd = findViewById(R.id.login_passwd_reset);
         TextView inscription = findViewById(R.id.login_inscription_btn);
@@ -97,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
          * Action du bouton connect, test les valeurs dans les EditText puis connecte ou affiche un Toast
          * si le pass ou login est faux.
          */
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+      /**  loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -111,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        });*/
 
         /**
          * Gére le bouton mot de passe oublié et l'envoie vers l'activité en question.
@@ -153,6 +155,21 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     * Méthode pour se connecter a la bdd et savoir si les infos données sont justes
+     *
+     */
+    public void OnLogin(View view)
+    {
+        String loginEmail = emailInput.getText().toString();
+        String loginPwd = passwdInput.getText().toString();
+        String type = "login";
+
+        BackgroundWorker bgW = new BackgroundWorker(this);
+        bgW.execute(type,loginEmail,loginPwd);
+    }
+
 
     /**
      * Méthode pour écrire dans le fichier lang_pref.txt
