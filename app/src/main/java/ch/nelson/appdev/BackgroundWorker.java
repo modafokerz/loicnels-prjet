@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -75,6 +76,22 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 bfReader.close();
                 inStream.close();
                 httpconn.disconnect();
+
+                Session userSession = new Session(context);
+                // alertD.setMessage(result);
+                if (resultat.equals("ConnectionOk"))
+                {
+                    userSession.setEmail(email);
+                    userSession.setPassword(password);
+                    userSession.setIsConnected(1);
+                }
+                else
+                {
+                    userSession.setIsConnected(0);
+                    userSession.setEmail("");
+                    userSession.setPassword("");
+                }
+
                 return resultat;
 
             } catch (MalformedURLException e) {
@@ -91,8 +108,6 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPreExecute() {
-       alertD = new AlertDialog.Builder(context).create();
-       alertD.setTitle("Login Status");
 
     }
 
@@ -102,25 +117,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
      */
     @Override
     protected void onPostExecute(String result) {
-        Session userSession = new Session(context);
-       // alertD.setMessage(result);
-        if (result.equals("ConnectionOk"))
-        {
-            userSession.setEmail(email);
-            userSession.setPassword(password);
-            userSession.setIsConnected(1);
 
-        }
-        else
-        {
-            userSession.setEmail(null);
-            userSession.setPassword(null);
-            userSession.setIsConnected(0);
-            alertD.setMessage("Erreur dans les identifiants");
-            alertD.show();
-        }
-
-
+        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
     }
 
     @Override

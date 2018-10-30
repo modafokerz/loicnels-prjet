@@ -173,15 +173,13 @@ public class LoginActivity extends AppCompatActivity {
 
         Session userSession = new Session(this);
 
-        //Ne fonctionne pas vu que l'exectution de BackgroundWorker est plus longue que celle ci alors elle se fini
-        // avant la fin de l'autre bordel de merde
+        //Si le pwd a été tappé faut au début il faudra 2 click pour que ca marche putain de merde
         if (userSession.getIsConnected()==1)
         {
             Intent goToNavActivity = new Intent(getApplicationContext(), NavigationActivity.class);
             startActivity(goToNavActivity);
             finish();
         }
-
     }
 
 
