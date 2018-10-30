@@ -2,6 +2,7 @@ package ch.nelson.appdev;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
@@ -23,6 +24,8 @@ import java.net.URLEncoder;
 public class BackgroundWorker extends AsyncTask<String,Void,String> {
     Context context;
     AlertDialog alertD;
+    String email="" ;
+    String password="" ;
 
     BackgroundWorker (Context ctx)
     {
@@ -41,8 +44,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         if (type.equals("login"))
         {
             try {
-                String email = params[1];
-                String password = params[2];
+                email = params[1];
+                password = params[2];
 
                 URL url = new URL(login_url);
                 HttpURLConnection httpconn = (HttpURLConnection)url.openConnection();
@@ -99,8 +102,25 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
      */
     @Override
     protected void onPostExecute(String result) {
-        alertD.setMessage(result);
-        alertD.show();
+        Session userSession = new Session(context);
+       // alertD.setMessage(result);
+        if (result.equals("ConnectionOk"))
+        {
+            userSession.setEmail(email);
+            userSession.setPassword(password);
+            userSession.setIsConnected(1);
+
+        }
+        else
+        {
+            userSession.setEmail(null);
+            userSession.setPassword(null);
+            userSession.setIsConnected(0);
+            alertD.setMessage("Erreur dans les identifiants");
+            alertD.show();
+        }
+
+
     }
 
     @Override

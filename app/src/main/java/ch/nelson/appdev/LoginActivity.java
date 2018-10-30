@@ -2,6 +2,7 @@ package ch.nelson.appdev;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -160,14 +161,27 @@ public class LoginActivity extends AppCompatActivity {
      * Méthode pour se connecter a la bdd et savoir si les infos données sont justes
      *
      */
-    public void OnLogin(View view)
+    public void OnLogin (View view)
     {
+
         String loginEmail = emailInput.getText().toString();
         String loginPwd = passwdInput.getText().toString();
         String type = "login";
 
         BackgroundWorker bgW = new BackgroundWorker(this);
         bgW.execute(type,loginEmail,loginPwd);
+
+        Session userSession = new Session(this);
+
+        //Ne fonctionne pas vu que l'exectution de BackgroundWorker est plus longue que celle ci alors elle se fini
+        // avant la fin de l'autre bordel de merde
+        if (userSession.getIsConnected()==1)
+        {
+            Intent goToNavActivity = new Intent(getApplicationContext(), NavigationActivity.class);
+            startActivity(goToNavActivity);
+            finish();
+        }
+
     }
 
 
