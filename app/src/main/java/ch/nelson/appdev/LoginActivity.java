@@ -2,6 +2,7 @@ package ch.nelson.appdev;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginActivity activity;
     private static final String langNameFile = "lang_pref.txt";
+    private SharedPreferences mPreferences;
+    private SharedPreferences.Editor mEditor;
 
     private EditText emailInput, passwdInput;
 
@@ -174,6 +177,8 @@ public class LoginActivity extends AppCompatActivity {
         Session userSession = new Session(this);
 
         //Si le pwd a été tappé faut au début il faudra 2 click pour que ca marche putain de merde
+
+
         if (userSession.getIsConnected()==1)
         {
             Intent goToNavActivity = new Intent(getApplicationContext(), NavigationActivity.class);
