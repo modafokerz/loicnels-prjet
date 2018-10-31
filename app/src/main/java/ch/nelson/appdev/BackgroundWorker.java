@@ -115,12 +115,22 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
+                outputStream.close();
                 InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String dataResponse = "";
+                String inputLine = "";
+                while((inputLine = bufferedReader.readLine()) != null){
+                    dataResponse += inputLine;
+                }
+                bufferedReader.close();
                 inputStream.close();
+                httpURLConnection.disconnect();
 
                 mEditor.putString("flag","register");
                 mEditor.commit();
-                return "Successfully Registered " + regEmail;
+                return dataResponse;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -167,9 +177,23 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             }
         }
         else if(flag.equals("register")) {
-            Toast.makeText(context,result,Toast.LENGTH_LONG).show();
+
+            String message = "Erreur";
+            if (result.equals("ok"))
+            {
+                message ="Okay";
+            }
+            else if (result.equals("erreur"))
+            {
+                message ="Erreur register";
+            }
+            else if (result.equals("existant"))
+            {
+                message ="Email déjà utilisé";
+            }
+            Toast.makeText(context,message,Toast.LENGTH_LONG).show();
         }
-        else if (flag.equals("0"))
+        else
         {
             Toast.makeText(context,"Erreur flag 0",Toast.LENGTH_LONG).show();
         }
