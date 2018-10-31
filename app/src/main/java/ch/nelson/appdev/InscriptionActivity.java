@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 public class InscriptionActivity extends AppCompatActivity {
 
-    BackgroundWorker bgW = new BackgroundWorker(this);
+
 
     /**
      * class qui gère le choix de type d'inscription escort ou client
@@ -53,6 +53,7 @@ public class InscriptionActivity extends AppCompatActivity {
                     } else if (passwd.length()<6){
                         Toast.makeText(getApplicationContext(),getString(R.string.inscription_fr_err_passwd), Toast.LENGTH_SHORT).show();
                     } else {
+                        BackgroundWorker bgW = new BackgroundWorker(InscriptionActivity.this);
                         bgW.execute(type,email,passwd);
                     }
                 }
