@@ -1,9 +1,26 @@
 <resources>
     <string name="app_name">AppDev</string>
 
+    <!-- SharedPreferences Keys -->
+    <string name="SP_langPref_Key">langPref</string>
+    <string name="SP_checkBoxSave_Key">checkBox</string>
+    <string name="SP_login_Key">login</string>
+    <string name="SP_passwd_Key">passwd</string>
+
+    <!-- SharedPreferences Lang Values -->
+    <string name="SP_langPref_frValue">fr</string>
+    <string name="SP_langPref_deValue">de</string>
+    <string name="SP_langPref_itaValue">ita</string>
+    <string name="SP_langPref_enValue">en</string>
+
+    <!-- SharedPreferences checkBox Values -->
+    <string name="SP_checkBox_true">true</string>
+    <string name="SP_checkBox_false">false</string>
+
     <!-- LOGIN STRINGS -->
     <string name="login_fr_passwd_reset">Mot de passe oublié ?</string>
     <string name="login_fr_inscription">S\'inscrire</string>
+    <string name="login_fr_checkBox">Voulez-vous enregistrer votre compte ?</string>
 
     <string name="login_en_inscription">Register</string>
     <string name="login_en_passwd_reset">Forgot password ?</string>

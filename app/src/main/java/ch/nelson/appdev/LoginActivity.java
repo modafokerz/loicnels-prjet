@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,72 +33,42 @@ public class LoginActivity extends AppCompatActivity {
      */
 
     private LoginActivity activity;
-    private static final String langNameFile = "lang_pref.txt";
+
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
 
     private EditText emailInput, passwdInput;
+    private TextView resetPasswd, inscription;
+    private ImageView flag;
+    private Button loginBtn;
+    private CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-        /**
-         * Va chercher la préférence de langue du client.
-         * met FR par défaut.
-         */
-        if(!verifyLangFile())
-        writeLangPref("fr",getApplicationContext());
-
-
-        String langPref = readFromFile(getApplicationContext());
-
-
-
         /**
          * Les ressources dont on a besoin, btns, texte, etc.
          */
-        Button loginBtn = findViewById(R.id.login_btn);
+        loginBtn = findViewById(R.id.login_btn);
         emailInput = findViewById(R.id.login_email_input);
         passwdInput = findViewById(R.id.login_passwd_input);
         this.activity = this;
-        TextView resetPasswd = findViewById(R.id.login_passwd_reset);
-        TextView inscription = findViewById(R.id.login_inscription_btn);
-        ImageView flag = findViewById(R.id.login_language_flag);
+        resetPasswd = findViewById(R.id.login_passwd_reset);
+        inscription = findViewById(R.id.login_inscription_btn);
+        flag = findViewById(R.id.login_language_flag);
+        checkBox = findViewById(R.id.login_checkBox);
 
-        switch(langPref){
-            case "en":
-                inscription.setText(R.string.login_en_inscription);
-                resetPasswd.setText(R.string.login_en_passwd_reset);
-                flag.setImageResource(R.drawable.eng_flag);
-                break;
-            default:
-                inscription.setText(R.string.login_fr_inscription);
-                resetPasswd.setText(R.string.login_fr_passwd_reset);
-                flag.setImageResource(R.drawable.fr_flag);
-                break;
-        }
 
         /**
-         * Affiche le drapeau selon le choix de langue qui a été fait.
+         * Va chercher la préférence de langue du user.
+         * met FR par défaut.
          */
-        ;
-        switch (langPref){
-            case "fr":
-                flag.setImageResource(R.drawable.fr_flag);
-                break;
-            case "ger":
-                flag.setImageResource(R.drawable.ger_flag);
-                break;
-            case "ita":
-                flag.setImageResource(R.drawable.ita_flag);
-                break;
-            case "eng":
-                flag.setImageResource(R.drawable.eng_flag);
-                break;
-        }
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mPreferences.edit();
+
+        checkSharedPreferences();
 
 
         /**
@@ -178,6 +150,30 @@ public class LoginActivity extends AppCompatActivity {
 
         //Si le pwd a été tappé faut au début il faudra 2 click pour que ca marche putain de merde
 
+        if(checkBox.isChecked()){
+            String loginKey = getString(R.string.SP_login_Key);
+            String passwdKey = getString(R.string.SP_passwd_Key);
+            String langPref = getString(R.string.SP_langPref_Key);
+            String checkBoxKey = getString(R.string.SP_checkBoxSave_Key);
+
+            String langPrefValue = mPreferences.getString(langPref,"");
+            String checkBoy_trueValue = getString(R.string.SP_checkBox_true);
+
+
+
+            mEditor.putString(loginKey,loginEmail);
+            mEditor.commit();
+
+            mEditor.putString(passwdKey,loginPwd);
+            mEditor.commit();
+
+            mEditor.putString(langPref,langPrefValue);
+            mEditor.commit();
+
+            mEditor.putString(checkBoxKey,checkBoy_trueValue);
+            mEditor.commit();
+
+        }
 
         if (userSession.getIsConnected()==1)
         {
@@ -185,60 +181,63 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(goToNavActivity);
             finish();
         }
+
+
+    }
+
+    private void checkSharedPreferences(){
+        String langPrefKey = getString(R.string.SP_langPref_Key);
+        String checkBoxKey = getString(R.string.SP_checkBoxSave_Key);
+
+        String langPref = mPreferences.getString(langPrefKey,"");
+        String checkBoxPref = mPreferences.getString(checkBoxKey,"false");
+
+        // Language par défaut fr
+        if(langPref.equals(""))
+            mEditor.putString(langPrefKey,getString(R.string.SP_langPref_frValue));
+
+        if(checkBoxPref.equals("true")){
+            checkBox.setChecked(true);
+        } else {
+            checkBox.setChecked(false);
+        }
+
+
+
+        // Texte des éléments "A TRADUIRE"
+        switch(langPref){
+            case "en":
+                inscription.setText(R.string.login_en_inscription);
+                resetPasswd.setText(R.string.login_en_passwd_reset);
+                flag.setImageResource(R.drawable.eng_flag);
+                break;
+            default:
+                inscription.setText(R.string.login_fr_inscription);
+                resetPasswd.setText(R.string.login_fr_passwd_reset);
+                flag.setImageResource(R.drawable.fr_flag);
+                break;
+        }
+
+        /**
+         * Affiche le drapeau selon le choix de langue qui a été fait.
+         */
+        ;
+        switch (langPref){
+            case "fr":
+                flag.setImageResource(R.drawable.fr_flag);
+                break;
+            case "ger":
+                flag.setImageResource(R.drawable.ger_flag);
+                break;
+            case "ita":
+                flag.setImageResource(R.drawable.ita_flag);
+                break;
+            case "eng":
+                flag.setImageResource(R.drawable.eng_flag);
+                break;
+        }
     }
 
 
-    /**
-     * Méthode pour écrire dans le fichier lang_pref.txt
-     * @param data valeur
-     * @param context AppContext
-     */
-    public static void writeLangPref(String data,Context context) {
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(langNameFile, Context.MODE_PRIVATE));
-            outputStreamWriter.write(data);
-            outputStreamWriter.close();
-        }
-        catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
-    }
 
-    public static String readFromFile(Context context) {
-
-        String ret = "";
-
-        try {
-            InputStream inputStream = context.openFileInput(langNameFile);
-
-            if ( inputStream != null ) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
-                    stringBuilder.append(receiveString);
-                }
-
-                inputStream.close();
-                ret = stringBuilder.toString();
-            }
-        }
-        catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        } catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        }
-
-        return ret;
-    }
-
-    private boolean verifyLangFile(){
-        File file = getApplicationContext().getFileStreamPath(langNameFile);
-        if(file == null || !file.exists()) {
-            return false;
-        }
-        return true;
-    }
 }
