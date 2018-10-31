@@ -110,8 +110,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("identifier_email","UTF-8")+"="+URLEncoder.encode(regEmail,"UTF-8")+"&"
-                        +URLEncoder.encode("identifier_password","UTF-8")+"="+URLEncoder.encode(regPassword,"UTF-8");
+                String myData = URLEncoder.encode("register_email","UTF-8")+"="+URLEncoder.encode(regEmail,"UTF-8")+"&"
+                        +URLEncoder.encode("register_password","UTF-8")+"="+URLEncoder.encode(regPassword,"UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -145,9 +145,6 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
         String flag = mPreferences.getString("flag","0");
 
-        if(flag.equals("register")) {
-            Toast.makeText(context,result,Toast.LENGTH_LONG).show();
-        }
         if(flag.equals("login")){
             String test = "false";
             String password = "";
@@ -168,8 +165,13 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             }else{
                 Toast.makeText(context,"Indentifiant incorrect",Toast.LENGTH_LONG).show();
             }
-        }else{
-            Toast.makeText(context,"Error Database ! login",Toast.LENGTH_LONG).show();
+        }
+        else if(flag.equals("register")) {
+            Toast.makeText(context,result,Toast.LENGTH_LONG).show();
+        }
+        else if (flag.equals("0"))
+        {
+            Toast.makeText(context,"Erreur flag 0",Toast.LENGTH_LONG).show();
         }
     }
 
