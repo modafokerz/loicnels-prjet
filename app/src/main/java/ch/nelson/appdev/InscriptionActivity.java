@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 public class InscriptionActivity extends AppCompatActivity {
 
+    BackgroundWorker bgW = new BackgroundWorker(this);
+
     /**
      * class qui gère le choix de type d'inscription escort ou client
      * @param savedInstanceState
@@ -41,6 +43,8 @@ public class InscriptionActivity extends AppCompatActivity {
 
                 String text = getString(R.string.inscription_fr_str);
 
+                String type = "register";
+
                 if(email.length()==0 || passwd.length()==0)
                     Toast.makeText(getApplicationContext(),text, Toast.LENGTH_SHORT).show();
                 else {
@@ -49,12 +53,8 @@ public class InscriptionActivity extends AppCompatActivity {
                     } else if (passwd.length()<6){
                         Toast.makeText(getApplicationContext(),getString(R.string.inscription_fr_err_passwd), Toast.LENGTH_SHORT).show();
                     } else {
-                        // SI TOUT EST OK, ALORS ON ENREGISTRE LE BORDEL DANS SHAREDPREFERENCES
-
-
+                        bgW.execute(type,email,passwd);
                     }
-
-
                 }
 
             }
