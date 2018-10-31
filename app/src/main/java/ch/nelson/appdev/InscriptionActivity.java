@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class InscriptionActivity extends AppCompatActivity {
 
@@ -18,24 +20,58 @@ public class InscriptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inscription);
 
         /**
-         * Va chercher les boutons de la fênetre pour le choix Escort ou Client
+         * Va chercher le boutons et les input(Email et passwd)
          */
-        Button escortChoice = findViewById(R.id.inscription_escort_btn);
-        Button clientChoice = findViewById(R.id.inscription_client_btn);
+        Button nextBtn = findViewById(R.id.inscription_nextBtn);
+        final EditText emailInput = findViewById(R.id.inscription_emailInput);
+        final EditText passwdInput = findViewById(R.id.inscription_passwdInput);
 
         /**
-         * Ajoute l'action au bouton escort et le renvoie vers l'activité
+         * Ajoute l'action au bouton next et test les valeurs entrées :
+         * Email doit avoir un "@" et un "."
+         * Password doit avoir au moins 6 caractères.
+         *
          */
-        escortChoice.setOnClickListener(new View.OnClickListener() {
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String email = emailInput.getText().toString();
+                String passwd = passwdInput.getText().toString();
+
+                String text = getString(R.string.inscription_fr_str);
+
+                if(email.length()==0 || passwd.length()==0)
+                    Toast.makeText(getApplicationContext(),text, Toast.LENGTH_SHORT).show();
+                else {
+                    if(!isValidEmail(email)){
+                        Toast.makeText(getApplicationContext(),getString(R.string.inscription_fr_err_email), Toast.LENGTH_SHORT).show();
+                    } else if (passwd.length()<6){
+                        Toast.makeText(getApplicationContext(),getString(R.string.inscription_fr_err_passwd), Toast.LENGTH_SHORT).show();
+                    } else {
+                        // SI TOUT EST OK, ALORS ON ENREGISTRE LE BORDEL DANS SHAREDPREFERENCES
+
+
+                    }
+
+
+                }
 
             }
         });
 
-        /**
-         * Ajoute l'action au bouton client et le renvoie vers l'activité correspondante.
-         */
 
+    }
+
+    /**
+     * Utilise Patterns d'android pour vérifier si l'email est valide.
+     * @param target
+     * @return
+     */
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null)
+            return false;
+
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 }

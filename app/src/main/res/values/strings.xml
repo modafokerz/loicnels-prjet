@@ -10,6 +10,12 @@
 
     <!-- inscription STRINGS -->
     <string name="inscription_fr_question">Vous êtes...</string>
+    <string name="inscription_fr_str">Inscription</string>
+    <string name="inscription_fr_next">Suivant</string>
+    <string name="inscription_fr_passwd">Mot de passe</string>
+    <string name="inscription_fr_err_empty">Un ou plusieurs champs sont vides</string>
+    <string name="inscription_fr_err_email">Email invalide</string>
+    <string name="inscription_fr_err_passwd">Mot de passe invalide</string>
 
 
     <!-- password reset Strings -->
