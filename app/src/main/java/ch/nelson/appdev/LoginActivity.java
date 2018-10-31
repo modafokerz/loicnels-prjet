@@ -99,7 +99,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent passwdReset = new Intent(getApplicationContext(), PasswordResetActivity.class);
                 startActivity(passwdReset);
-                finish();
             }
         });
 
@@ -111,7 +110,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent inscriptionActivity = new Intent(getApplicationContext(), InscriptionActivity.class);
                 startActivity(inscriptionActivity);
-                finish();
             }
         });
 
@@ -149,18 +147,16 @@ public class LoginActivity extends AppCompatActivity {
         Session userSession = new Session(this);
 
         //Si le pwd a été tappé faut au début il faudra 2 click pour que ca marche putain de merde
+        String loginKey = getString(R.string.SP_login_Key);
+        String passwdKey = getString(R.string.SP_passwd_Key);
+        String langPref = getString(R.string.SP_langPref_Key);
+        String checkBoxKey = getString(R.string.SP_checkBoxSave_Key);
+
+        String langPrefValue = mPreferences.getString(langPref,"");
+        String checkBoy_trueValue = getString(R.string.SP_checkBox_true);
+        String checkBox_falseValue = getString(R.string.SP_checkBox_false);
 
         if(checkBox.isChecked()){
-            String loginKey = getString(R.string.SP_login_Key);
-            String passwdKey = getString(R.string.SP_passwd_Key);
-            String langPref = getString(R.string.SP_langPref_Key);
-            String checkBoxKey = getString(R.string.SP_checkBoxSave_Key);
-
-            String langPrefValue = mPreferences.getString(langPref,"");
-            String checkBoy_trueValue = getString(R.string.SP_checkBox_true);
-
-
-
             mEditor.putString(loginKey,loginEmail);
             mEditor.commit();
 
@@ -172,25 +168,32 @@ public class LoginActivity extends AppCompatActivity {
 
             mEditor.putString(checkBoxKey,checkBoy_trueValue);
             mEditor.commit();
+        } else {
+            mEditor.putString(loginKey,"");
+            mEditor.commit();
 
+            mEditor.putString(passwdKey,"");
+            mEditor.commit();
+
+            mEditor.putString(langPref,"fr");
+            mEditor.commit();
+
+            mEditor.putString(checkBoxKey,checkBox_falseValue);
+            mEditor.commit();
         }
-
-        if (userSession.getIsConnected()==1)
-        {
-            Intent goToNavActivity = new Intent(getApplicationContext(), NavigationActivity.class);
-            startActivity(goToNavActivity);
-            finish();
-        }
-
-
     }
 
     private void checkSharedPreferences(){
         String langPrefKey = getString(R.string.SP_langPref_Key);
         String checkBoxKey = getString(R.string.SP_checkBoxSave_Key);
+        String loginKey = getString(R.string.SP_login_Key);
+        String pwdKey = getString(R.string.SP_passwd_Key);
 
         String langPref = mPreferences.getString(langPrefKey,"");
         String checkBoxPref = mPreferences.getString(checkBoxKey,"false");
+
+        String login = mPreferences.getString(loginKey,"");
+        String pwd = mPreferences.getString(pwdKey,"");
 
         // Language par défaut fr
         if(langPref.equals(""))
@@ -198,11 +201,13 @@ public class LoginActivity extends AppCompatActivity {
 
         if(checkBoxPref.equals("true")){
             checkBox.setChecked(true);
+            emailInput.setText(login);
+            passwdInput.setText(pwd);
         } else {
             checkBox.setChecked(false);
+            emailInput.setText("");
+            passwdInput.setText("");
         }
-
-
 
         // Texte des éléments "A TRADUIRE"
         switch(langPref){
@@ -226,7 +231,7 @@ public class LoginActivity extends AppCompatActivity {
             case "fr":
                 flag.setImageResource(R.drawable.fr_flag);
                 break;
-            case "ger":
+            case "de":
                 flag.setImageResource(R.drawable.ger_flag);
                 break;
             case "ita":
@@ -236,6 +241,9 @@ public class LoginActivity extends AppCompatActivity {
                 flag.setImageResource(R.drawable.eng_flag);
                 break;
         }
+
+
+
     }
 
 
