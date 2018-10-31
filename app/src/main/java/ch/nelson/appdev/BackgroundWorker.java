@@ -3,7 +3,9 @@ package ch.nelson.appdev;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -24,9 +26,9 @@ import java.net.URLEncoder;
  */
 public class BackgroundWorker extends AsyncTask<String,Void,String> {
     Context context;
-    AlertDialog alertD;
-    String email="" ;
-    String password="" ;
+
+    private SharedPreferences mPreferences;
+    private SharedPreferences.Editor mEditor;
 
     BackgroundWorker (Context ctx)
     {
@@ -41,62 +43,85 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... params) {
         String type = params[0];
-        String login_url = "http://y54uotiox.preview.infomaniak.website/connection_db.php";
-        if (type.equals("login"))
-        {
+        String login_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_login.php";
+        String register_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_register.php";
+
+        mPreferences = context.getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
+        mEditor = mPreferences.edit();
+        mEditor.putString("flag","0");
+        mEditor.commit();
+
+        if(type.equals("login")){
+            String loginEmail = params[1];
+            String loginPassword = params[2];
             try {
-                email = params[1];
-                password = params[2];
-
                 URL url = new URL(login_url);
-                HttpURLConnection httpconn = (HttpURLConnection)url.openConnection();
-                httpconn.setRequestMethod("POST");
-                httpconn.setDoOutput(true);
-                httpconn.setDoInput(true);
-                OutputStream opStream = httpconn.getOutputStream();
-                BufferedWriter bfWriter = new BufferedWriter(new OutputStreamWriter(opStream,"UTF-8"));
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
 
-                String post_data = URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(email,"UTF-8")+"&"
-                        +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
+                //send the email and password to the database
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+                String myData = URLEncoder.encode("loginEmail","UTF-8")+"="+URLEncoder.encode(loginEmail,"UTF-8")+"&"
+                        +URLEncoder.encode("loginPassword","UTF-8")+"="+URLEncoder.encode(loginPassword,"UTF-8");
+                bufferedWriter.write(myData);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
 
-                bfWriter.write(post_data);
-                bfWriter.flush();
-                bfWriter.close();
-                opStream.close();
-
-                InputStream inStream = httpconn.getInputStream();
-                BufferedReader bfReader = new BufferedReader(new InputStreamReader(inStream,"iso-8859-1"));
-                String resultat="";
-                String line="";
-
-                while ((line = bfReader.readLine())!=null)
-                {
-                    resultat += line;
+                //get response from the database
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String dataResponse = "";
+                String inputLine = "";
+                while((inputLine = bufferedReader.readLine()) != null){
+                    dataResponse += inputLine;
                 }
-                bfReader.close();
-                inStream.close();
-                httpconn.disconnect();
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
 
-                Session userSession = new Session(context);
-                // alertD.setMessage(result);
-                if (resultat.equals("ConnectionOk"))
-                {
-                    userSession.setEmail(email);
-                    userSession.setPassword(password);
-                    userSession.setIsConnected(1);
-                }
-                else
-                {
-                    userSession.setIsConnected(0);
-                    userSession.setEmail("");
-                    userSession.setPassword("");
-                }
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println(dataResponse);
 
-                return resultat;
+                mEditor.putString("flag","login");
+                mEditor.commit();
+                return  dataResponse;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
-            } catch (ProtocolException e) {
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(type.equals("register")){
+            String regEmail = params[1];
+            String regPassword = params[2];
+
+            try {
+                URL url = new URL(register_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+                String myData = URLEncoder.encode("identifier_email","UTF-8")+"="+URLEncoder.encode(regEmail,"UTF-8")+"&"
+                        +URLEncoder.encode("identifier_password","UTF-8")+"="+URLEncoder.encode(regPassword,"UTF-8");
+                bufferedWriter.write(myData);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                inputStream.close();
+
+                mEditor.putString("flag","register");
+                mEditor.commit();
+                return "Successfully Registered " + regEmail;
+            } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -118,11 +143,39 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
 
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        String flag = mPreferences.getString("flag","0");
+
+        if(flag.equals("register")) {
+            Toast.makeText(context,result,Toast.LENGTH_LONG).show();
+        }
+        if(flag.equals("login")){
+            String test = "false";
+            String password = "";
+            String email = "";
+            String[] serverResponse = result.split("[,]");
+            test = serverResponse[0];
+            email = serverResponse[1];
+            password = serverResponse[2];
+
+            if(test.equals("true")){
+                mEditor.putString("email",email);
+                mEditor.commit();
+                mEditor.putString("password",password);
+                mEditor.commit();
+                Intent intent = new Intent(context,NavigationActivity.class);
+                context.startActivity(intent);
+                //Toast.makeText(context,"Connection réussie",Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(context,"Indentifiant incorrect",Toast.LENGTH_LONG).show();
+            }
+        }else{
+            Toast.makeText(context,"Error Database ! login",Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
     }
+
 }
