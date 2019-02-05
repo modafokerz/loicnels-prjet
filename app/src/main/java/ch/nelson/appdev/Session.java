@@ -29,6 +29,12 @@ public class Session {
         String passwd = prefs.getString("password","");
         return passwd;
     }
+
+    public String getLangPref() {
+        String langPref = prefs.getString("langPref", "");
+        return langPref;
+    }
+
     public void setIsConnected(Integer isConnected) {
         prefs.edit().putInt("isConnected", isConnected).commit();
     }
