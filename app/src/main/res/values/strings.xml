@@ -32,7 +32,8 @@
     <string name="inscription_fr_passwd">Mot de passe</string>
     <string name="inscription_fr_err_empty">Un ou plusieurs champs sont vides</string>
     <string name="inscription_fr_err_email">Email invalide</string>
-    <string name="inscription_fr_err_passwd">Mot de passe invalide</string>
+    <string name="inscription_fr_err_passwd">Min 6 caractères pour le mot de passe</string>
+    <string name="inscription_fr_err_passwd2">Les 2 mots de passes ne correspondent pas</string>
     <string name="inscription_fr_err_inscr">Email déjà utilisé</string>
     <string name="inscription_fr_err_inscr2">Erreur, contatez un administrateur</string>
     <string name="inscription_fr_inscrOk">Vous êtes maintenant inscrit.</string>

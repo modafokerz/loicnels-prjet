@@ -27,6 +27,11 @@ public class InscriptionActivity extends AppCompatActivity {
         Button nextBtn = findViewById(R.id.inscription_nextBtn);
         final EditText emailInput = findViewById(R.id.inscription_emailInput);
         final EditText passwdInput = findViewById(R.id.inscription_passwdInput);
+        final EditText passwdInput2 = findViewById(R.id.inscription_passwdInput2);
+
+        emailInput.setHint("Email");
+        passwdInput.setHint("Mot de passe");
+        passwdInput2.setHint("Retapper mot de passe");
 
         /**
          * Ajoute l'action au bouton next et test les valeurs entrées :
@@ -40,6 +45,7 @@ public class InscriptionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = emailInput.getText().toString();
                 String passwd = passwdInput.getText().toString();
+                String passwd2 = passwdInput2.getText().toString();
 
                 String text = getString(R.string.inscription_fr_str);
 
@@ -53,8 +59,15 @@ public class InscriptionActivity extends AppCompatActivity {
                     } else if (passwd.length()<6){
                         Toast.makeText(getApplicationContext(),getString(R.string.inscription_fr_err_passwd), Toast.LENGTH_SHORT).show();
                     } else {
-                        BackgroundWorker bgW = new BackgroundWorker(InscriptionActivity.this);
-                        bgW.execute(type,email,passwd);
+                        if (passwd.equals(passwd2))
+                        {
+                            BackgroundWorker bgW = new BackgroundWorker(InscriptionActivity.this);
+                            bgW.execute(type,email,passwd);
+                            //Si l'inscription a fonctionné on ferme l'activité
+                            finish();
+                        }
+                        else
+                            Toast.makeText(getApplicationContext(),getString(R.string.inscription_fr_err_passwd2), Toast.LENGTH_SHORT).show();
                     }
                 }
 

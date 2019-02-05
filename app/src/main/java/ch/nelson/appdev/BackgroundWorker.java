@@ -169,6 +169,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 mEditor.commit();
                 mEditor.putString("password",password);
                 mEditor.commit();
+
                 Intent intent = new Intent(context,NavigationActivity.class);
                 context.startActivity(intent);
                 //Toast.makeText(context,"Connection réussie",Toast.LENGTH_LONG).show();

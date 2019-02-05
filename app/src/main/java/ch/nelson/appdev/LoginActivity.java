@@ -146,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Session userSession = new Session(this);
 
-        //Si le pwd a été tappé faut au début il faudra 2 click pour que ca marche putain de merde
+
         String loginKey = getString(R.string.SP_login_Key);
         String passwdKey = getString(R.string.SP_passwd_Key);
         String langPref = getString(R.string.SP_langPref_Key);

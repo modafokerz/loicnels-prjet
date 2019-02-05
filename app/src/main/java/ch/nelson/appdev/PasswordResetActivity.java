@@ -35,6 +35,7 @@ public class PasswordResetActivity extends AppCompatActivity {
                      * TODO send email to the user and request the database
                      */
                     Toast.makeText(getApplicationContext(),"L'email vous a bien été envoyé", Toast.LENGTH_SHORT).show();
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(),"Cet email n'existe pas", Toast.LENGTH_SHORT).show();
                 }
