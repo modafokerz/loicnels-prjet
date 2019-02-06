@@ -214,11 +214,25 @@ public class LoginActivity extends AppCompatActivity {
             case "en":
                 inscription.setText(R.string.login_en_inscription);
                 resetPasswd.setText(R.string.login_en_passwd_reset);
+                checkBox.setText(R.string.login_en_checkBox);
                 flag.setImageResource(R.drawable.eng_flag);
+                break;
+            case "de":
+                inscription.setText(R.string.login_de_inscription);
+                resetPasswd.setText(R.string.login_de_passwd_reset);
+                checkBox.setText(R.string.login_de_checkBox);
+                flag.setImageResource(R.drawable.ger_flag);
+                break;
+            case "ita":
+                inscription.setText(R.string.login_ita_inscription);
+                resetPasswd.setText(R.string.login_ita_passwd_reset);
+                checkBox.setText(R.string.login_ita_checkBox);
+                flag.setImageResource(R.drawable.ita_flag);
                 break;
             default:
                 inscription.setText(R.string.login_fr_inscription);
                 resetPasswd.setText(R.string.login_fr_passwd_reset);
+                checkBox.setText(R.string.login_fr_checkBox);
                 flag.setImageResource(R.drawable.fr_flag);
                 break;
         }

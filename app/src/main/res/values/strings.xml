@@ -20,15 +20,22 @@
     <!-- LOGIN STRINGS -->
     <string name="login_fr_passwd_reset">Mot de passe oublié ?</string>
     <string name="login_fr_inscription">S\'inscrire</string>
-    <string name="login_fr_checkBox">Voulez-vous enregistrer votre compte ?</string>
+    <string name="login_fr_checkBox">Se rappeler de moi</string>
 
     <string name="login_en_inscription">Register</string>
     <string name="login_en_passwd_reset">Forgot password ?</string>
+    <string name="login_en_checkBox">Remember me</string>
+
+    <string name="login_ita_inscription">Iscriversi</string>
+    <string name="login_ita_passwd_reset">Password dimenticata ?</string>
+    <string name="login_ita_checkBox">Ricordare me</string>
+
+    <string name="login_de_inscription">Zur Registrierung</string>
+    <string name="login_de_passwd_reset">Passwort vergessen ?</string>
+    <string name="login_de_checkBox">An mich erinnern</string>
 
     <!-- inscription STRINGS -->
-    <string name="inscription_fr_question">Vous êtes...</string>
     <string name="inscription_fr_str">Inscription</string>
-    <string name="inscription_fr_next">Suivant</string>
     <string name="inscription_fr_passwd">Mot de passe</string>
     <string name="inscription_fr_err_empty">Un ou plusieurs champs sont vides</string>
     <string name="inscription_fr_err_email">Email invalide</string>
@@ -36,14 +43,22 @@
     <string name="inscription_fr_err_passwd2">Les 2 mots de passes ne correspondent pas</string>
     <string name="inscription_fr_err_inscr">Email déjà utilisé</string>
     <string name="inscription_fr_err_inscr2">Erreur, contatez un administrateur</string>
-    <string name="inscription_fr_inscrOk">Vous êtes maintenant inscrit.</string>
+    <string name="inscription_fr_inscrOk">Vous êtes maintenant inscrit</string>
+
+    <string name="inscription_ita_str">Registrazione</string>
+    <string name="inscription_ita_passwd">Password</string>
+    <string name="inscription_ita_err_empty">L\'indirizzo email e password sono obbligatori</string>
+    <string name="inscription_ita_err_email">L\'indirizzo email non è valido</string>
+    <string name="inscription_ita_err_passwd">Min. 6 caratteri per la password</string>
+    <string name="inscription_ita_err_passwd2">Le due password devono essere uguali</string>
+    <string name="inscription_ita_err_inscr">L\'e-mail è già utilizzata</string>
+    <string name="inscription_ita_err_inscr2">Errore, contattare un amministratore</string>
+    <string name="inscription_ita_inscrOk">Sei ora registrato</string>
 
 
     <!-- password reset Strings -->
     <string name="passwdReset_fr_email">Votre email</string>
 
-
-    <string name="languageChoice_fr_top_text">Choisissez votre langue</string>
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

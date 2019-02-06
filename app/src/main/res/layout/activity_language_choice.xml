@@ -52,7 +52,7 @@
         android:id="@+id/languageChoice_topText"
         android:layout_width="wrap_content"
         android:layout_height="15dp"
-        android:text="@string/languageChoice_fr_top_text"
+        android:text="Please choose your language"
         app:layout_constraintBottom_toTopOf="@+id/languageChoice_fr_flag"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
