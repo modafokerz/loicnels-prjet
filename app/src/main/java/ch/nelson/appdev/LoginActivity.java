@@ -1,5 +1,6 @@
 package ch.nelson.appdev;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -42,12 +43,13 @@ public class LoginActivity extends AppCompatActivity {
     private ImageView flag;
     private Button loginBtn;
     private CheckBox checkBox;
+    public static Activity fa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        fa = this;
         /**
          * Les ressources dont on a besoin, btns, texte, etc.
          */
@@ -259,6 +261,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
 
 
 

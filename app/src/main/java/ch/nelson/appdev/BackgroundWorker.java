@@ -172,6 +172,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
                 Intent intent = new Intent(context,NavigationActivity.class);
                 context.startActivity(intent);
+                LoginActivity.fa.finish();
                 //Toast.makeText(context,"Connection réussie",Toast.LENGTH_LONG).show();
             }else{
                 Toast.makeText(context,"Indentifiant incorrect",Toast.LENGTH_LONG).show();
