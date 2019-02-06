@@ -6,7 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -45,6 +50,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         String type = params[0];
         String login_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_login.php";
         String register_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_register.php";
+        String afficheEscort_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_afficheEscort.php";
 
         mPreferences = context.getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
         mEditor = mPreferences.edit();
@@ -98,7 +104,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
         }
-        if(type.equals("register")){
+        else if(type.equals("register")){
             String regEmail = params[1];
             String regPassword = params[2];
 
@@ -138,7 +144,62 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             }
 
         }
+        else if(type.equals("afficheEscort")){
+
+            mEditor.putString("flag","afficheEscort");
+            mEditor.commit();
+            URL url;
+            HttpURLConnection urlConnection = null;
+            String server_response="";
+
+            try {
+                url = new URL(afficheEscort_url);
+                urlConnection = (HttpURLConnection) url.openConnection();
+
+                int responseCode = urlConnection.getResponseCode();
+
+                if(responseCode == HttpURLConnection.HTTP_OK){
+                    server_response = readStream(urlConnection.getInputStream());
+                    //Log.v("CatalogClient", server_response);
+                    System.out.println("!!!!!!!!!!!!!! affiche escort !!!!!!!!!!!!!!!!!!!");
+                    System.out.println(server_response);
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            return server_response;
+
+        }
+
         return null;
+    }
+
+    private String readStream(InputStream in) {
+        BufferedReader reader = null;
+        StringBuffer response = new StringBuffer();
+        try {
+            reader = new BufferedReader(new InputStreamReader(in));
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return response.toString();
     }
 
     @Override
@@ -194,6 +255,33 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 message ="Email déjà utilisé";
             }
             Toast.makeText(context,message,Toast.LENGTH_LONG).show();
+        }
+        else if(flag.equals("afficheEscort")) {
+            String[] splitArray = null;
+            String[] splitArray2 = null;
+
+            Toast.makeText(context,result,Toast.LENGTH_LONG).show();
+
+            splitArray = result.split("true");
+            System.out.println("slipArray ============================== "+splitArray.length);
+            for(int i = 1; i< splitArray.length;i++){
+                System.out.println("slipArray["+i+"] ="+splitArray[i]);
+
+            }
+
+            for(int i = 1; i< splitArray.length;i++){
+                splitArray2 = splitArray[i].split(",");
+                System.out.println("slipArray2[1] ="+splitArray2[1]);
+                System.out.println("slipArray2[2] ="+splitArray2[2]);
+                System.out.println("slipArray2[3] ="+splitArray2[3]);
+
+                ((NavigationActivity) context).list.add(new Femme(splitArray2[3], splitArray2[1],Integer.parseInt(splitArray2[2])));
+                ((NavigationActivity) context).updateListGirl();
+                splitArray2=null;
+
+            }
+            //context = (NavigationActivity) context;
+
         }
         else
         {

@@ -2,6 +2,7 @@ package ch.nelson.appdev;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -40,6 +42,7 @@ public class CustomListAdapter  extends ArrayAdapter<Femme> {
     private static class ViewHolder {
         TextView title;
         ImageView image;
+        int idEscort;
     }
 
     /**
@@ -73,7 +76,7 @@ public class CustomListAdapter  extends ArrayAdapter<Femme> {
             final View result;
 
             //ViewHolder object
-            ViewHolder holder;
+            final ViewHolder holder;
 
             if(convertView == null){
                 LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -81,6 +84,16 @@ public class CustomListAdapter  extends ArrayAdapter<Femme> {
                 holder= new ViewHolder();
                 holder.title = (TextView) convertView.findViewById(R.id.cardTitle);
                 holder.image = (ImageView) convertView.findViewById(R.id.cardImage);
+                holder.idEscort = getItem(position).getidEscort();
+
+                holder.image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent viewDetails = new Intent(mContext.getApplicationContext(), DetailsActivity.class);
+                        mContext.startActivity(viewDetails);
+                        Toast.makeText(mContext.getApplicationContext(), "idEscort = "+holder.idEscort, Toast.LENGTH_LONG).show();
+                    }
+                });
 
                 result = convertView;
 
@@ -93,8 +106,8 @@ public class CustomListAdapter  extends ArrayAdapter<Femme> {
 
             /*Animation animation = AnimationUtils.loadAnimation(mContext,
                     (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
-            result.startAnimation(animation);*/
-            lastPosition = position;
+            result.startAnimation(animation);
+            lastPosition = position;*/
 
             holder.title.setText(title);
 

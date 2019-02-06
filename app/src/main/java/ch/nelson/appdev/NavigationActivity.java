@@ -29,6 +29,7 @@ public class NavigationActivity extends AppCompatActivity
 
 
     private ListView mListView;
+    public ArrayList<Femme> list;
 
 
     @Override
@@ -37,22 +38,29 @@ public class NavigationActivity extends AppCompatActivity
 
 // ----- nouvelle methode test
         //Appelle un layout qui contiendra la list du layout content_navigation
-      /*  setContentView(R.layout.listview_principale);
+        setContentView(R.layout.content_navigation);
 
-        mListView = (ListView) findViewById(R.id.listViewPrincipale);
+        mListView = (ListView) findViewById(R.id.listViewP);
 
-        ArrayList<Femme> list = new ArrayList<>();
+        list = new ArrayList<>();
+
+        String type = "afficheEscort";
+        BackgroundWorker bgW = new BackgroundWorker(this);
+        bgW.execute(type);
 
         //La liste des gouzesses
-        list.add(new Femme("drawable://" + R.drawable.penelop3, "Pelenop no 1"));
-        list.add(new Femme("@drawable/penelop3", "Rita no 2"));
+        /*list.add(new Femme("drawable://" + R.drawable.penelop3, "Pelenop no 1"));
+        list.add(new Femme("https://tentazione.fr/apptchoin/imageGirl/Valerie.jpeg", "Valerie no 2"));
+        list.add(new Femme("https://tentazione.fr/apptchoin/imageGirl/Valerie2.jpeg", "Biaaatch"));
+        list.add(new Femme("https://tentazione.fr/apptchoin/imageGirl/Valerie3.jpeg", "Nique ta mere"));
+        list.add(new Femme("https://tentazione.fr/apptchoin/imageGirl/Valerie4.jpeg", "enculeee"));
 
-        CustomListAdapter adapter = new CustomListAdapter(this, R.layout.content_navigation, list);
+        CustomListAdapter adapter = new CustomListAdapter(this, R.layout.activity_afterlogin, list);
         mListView.setAdapter(adapter);*/
 // fin nouvelle methode
 
 // ancienne methode
-        setContentView(R.layout.activity_navigation);
+      /* setContentView(R.layout.activity_afterlogin);
 
         mCardImage = (ImageView) findViewById(R.id.cardImage);
         mCardTitle = (TextView) findViewById(R.id.cardTitle);
@@ -69,10 +77,10 @@ public class NavigationActivity extends AppCompatActivity
                 Intent viewDetails = new Intent(getApplicationContext(), DetailsActivity.class);
                 startActivity(viewDetails);
             }
-        });
+        });*/
 // fin ancienne methode
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+       /* NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -91,7 +99,13 @@ public class NavigationActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        toggle.syncState();*/
+    }
+
+    public void updateListGirl()
+    {
+        CustomListAdapter adapter = new CustomListAdapter(this, R.layout.activity_afterlogin, list);
+        mListView.setAdapter(adapter);
     }
 
     @Override
