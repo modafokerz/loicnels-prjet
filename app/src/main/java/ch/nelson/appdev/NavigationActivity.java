@@ -15,38 +15,44 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public static final String TAG ="NavigationActivity";
 
     private ImageView mCardImage;
     private TextView mCardTitle;
 
+
+    private ListView mListView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+// ----- nouvelle methode test
+        //Appelle un layout qui contiendra la list du layout content_navigation
+      /*  setContentView(R.layout.listview_principale);
+
+        mListView = (ListView) findViewById(R.id.listViewPrincipale);
+
+        ArrayList<Femme> list = new ArrayList<>();
+
+        //La liste des gouzesses
+        list.add(new Femme("drawable://" + R.drawable.penelop3, "Pelenop no 1"));
+        list.add(new Femme("@drawable/penelop3", "Rita no 2"));
+
+        CustomListAdapter adapter = new CustomListAdapter(this, R.layout.content_navigation, list);
+        mListView.setAdapter(adapter);*/
+// fin nouvelle methode
+
+// ancienne methode
         setContentView(R.layout.activity_navigation);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
         mCardImage = (ImageView) findViewById(R.id.cardImage);
         mCardTitle = (TextView) findViewById(R.id.cardTitle);
@@ -64,6 +70,28 @@ public class NavigationActivity extends AppCompatActivity
                 startActivity(viewDetails);
             }
         });
+// fin ancienne methode
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
     @Override
