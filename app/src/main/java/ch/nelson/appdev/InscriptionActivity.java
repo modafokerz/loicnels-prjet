@@ -18,6 +18,7 @@ public class InscriptionActivity extends AppCompatActivity {
     private String errEmail;
     private String errPassword;
     private String errPassword2;
+    private Button nextBtn;
     /**
      * class qui gère le choix de type d'inscription escort ou client
      * @param savedInstanceState
@@ -31,7 +32,7 @@ public class InscriptionActivity extends AppCompatActivity {
         /**
          * Va chercher le boutons et les input(Email et passwd)
          */
-        Button nextBtn = findViewById(R.id.inscription_nextBtn);
+        nextBtn = findViewById(R.id.inscription_nextBtn);
         topText = findViewById(R.id.inscription_topText);
 
         final EditText emailInput = findViewById(R.id.inscription_emailInput);
@@ -55,6 +56,7 @@ public class InscriptionActivity extends AppCompatActivity {
         switch(langPref){
             case "en":
                 topText.setText(getString(R.string.inscription_en_str));
+                nextBtn.setText(getString(R.string.inscription_en_str));
                 passwdInput.setHint(getString(R.string.inscription_en_passwd));
                 passwdInput2.setHint(getString(R.string.inscription_en_passwd2));
                 errEmpty = getString(R.string.inscription_en_err_empty);
@@ -64,6 +66,7 @@ public class InscriptionActivity extends AppCompatActivity {
                 break;
             case "de":
                 topText.setText(getString(R.string.inscription_de_str));
+                nextBtn.setText(getString(R.string.inscription_de_str));
                 passwdInput.setHint(getString(R.string.inscription_de_passwd));
                 passwdInput2.setHint(getString(R.string.inscription_de_passwd2));
                 errEmpty = getString(R.string.inscription_de_err_empty);
@@ -73,6 +76,7 @@ public class InscriptionActivity extends AppCompatActivity {
                 break;
             case "ita":
                 topText.setText(getString(R.string.inscription_ita_str));
+                nextBtn.setText(getString(R.string.inscription_ita_str));
                 passwdInput.setHint(getString(R.string.inscription_ita_passwd));
                 passwdInput2.setHint(getString(R.string.inscription_ita_passwd2));
                 errEmpty = getString(R.string.inscription_ita_err_empty);
@@ -82,6 +86,7 @@ public class InscriptionActivity extends AppCompatActivity {
                 break;
             default:
                 topText.setText(getString(R.string.inscription_fr_str));
+                nextBtn.setText(getString(R.string.inscription_fr_str));
                 passwdInput.setHint(getString(R.string.inscription_fr_passwd));
                 passwdInput2.setHint(getString(R.string.inscription_fr_passwd2));
                 errEmpty = getString(R.string.inscription_fr_err_empty);
