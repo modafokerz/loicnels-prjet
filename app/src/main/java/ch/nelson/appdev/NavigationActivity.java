@@ -37,8 +37,8 @@ public class NavigationActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
 // ----- nouvelle methode test
-        //Appelle un layout qui contiendra la list du layout content_navigation
-        setContentView(R.layout.content_navigation);
+       //Appelle un layout qui contiendra la list du layout content_navigation
+        setContentView(R.layout.activity_navigation);
 
         mListView = (ListView) findViewById(R.id.listViewP);
 
@@ -60,7 +60,7 @@ public class NavigationActivity extends AppCompatActivity
 // fin nouvelle methode
 
 // ancienne methode
-      /* setContentView(R.layout.activity_afterlogin);
+    /*   setContentView(R.layout.activity_navigation);
 
         mCardImage = (ImageView) findViewById(R.id.cardImage);
         mCardTitle = (TextView) findViewById(R.id.cardTitle);
@@ -80,13 +80,13 @@ public class NavigationActivity extends AppCompatActivity
         });*/
 // fin ancienne methode
 
-       /* NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarNav);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabNav);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,7 +99,7 @@ public class NavigationActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.syncState();*/
+        toggle.syncState();
     }
 
     public void updateListGirl()
