@@ -37,6 +37,7 @@
     <!-- inscription STRINGS -->
     <string name="inscription_fr_str">Inscription</string>
     <string name="inscription_fr_passwd">Mot de passe</string>
+    <string name="inscription_fr_passwd2">Retapez le mot de passe</string>
     <string name="inscription_fr_err_empty">Un ou plusieurs champs sont vides</string>
     <string name="inscription_fr_err_email">Email invalide</string>
     <string name="inscription_fr_err_passwd">Min 6 caractères pour le mot de passe</string>
@@ -47,6 +48,7 @@
 
     <string name="inscription_ita_str">Registrazione</string>
     <string name="inscription_ita_passwd">Password</string>
+    <string name="inscription_ita_passwd2">Ripeti la password di nuovo</string>
     <string name="inscription_ita_err_empty">L\'indirizzo email e password sono obbligatori</string>
     <string name="inscription_ita_err_email">L\'indirizzo email non è valido</string>
     <string name="inscription_ita_err_passwd">Min. 6 caratteri per la password</string>
@@ -54,6 +56,28 @@
     <string name="inscription_ita_err_inscr">L\'e-mail è già utilizzata</string>
     <string name="inscription_ita_err_inscr2">Errore, contattare un amministratore</string>
     <string name="inscription_ita_inscrOk">Sei ora registrato</string>
+
+    <string name="inscription_en_str">Register</string>
+    <string name="inscription_en_passwd">Password</string>
+    <string name="inscription_en_passwd2">Type the password again</string>
+    <string name="inscription_en_err_empty">You have to enter an email address and password</string>
+    <string name="inscription_en_err_email">The email address isn\'t valid</string>
+    <string name="inscription_en_err_passwd">Min. 6 characters needed for the password</string>
+    <string name="inscription_en_err_passwd2">The passwords are different</string>
+    <string name="inscription_en_err_inscr">E-mail already used</string>
+    <string name="inscription_en_err_inscr2">Error, please contact an admin.</string>
+    <string name="inscription_en_inscrOk">You are successfully registered</string>
+
+    <string name="inscription_de_str">Inschrift</string>
+    <string name="inscription_de_passwd">Password</string>
+    <string name="inscription_de_passwd2">Geben Sie das Passwort erneut ein</string>
+    <string name="inscription_de_err_empty">Du musst eine E-Mail-Adresse und Password eingeben.</string>
+    <string name="inscription_de_err_email">Die E-Mail-Adresse ist nicht gültig</string>
+    <string name="inscription_de_err_passwd">Min. 6 Zeichen für das Passwort erforderlich</string>
+    <string name="inscription_de_err_passwd2">Die Passwörter sind unterschiedlich.</string>
+    <string name="inscription_de_err_inscr">E-Mail bereits verwendet</string>
+    <string name="inscription_de_err_inscr2">Fehler, bitte kontaktieren Sie einen Admin.</string>
+    <string name="inscription_de_inscrOk">Du bist erfolgreich registriert</string>
 
 
     <!-- password reset Strings -->
