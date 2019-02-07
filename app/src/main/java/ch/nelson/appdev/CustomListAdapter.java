@@ -89,7 +89,7 @@ public class CustomListAdapter  extends ArrayAdapter<Femme> {
                 holder.image.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent viewDetails = new Intent(mContext.getApplicationContext(), DetailsActivity.class);
+                        Intent viewDetails = new Intent(mContext.getApplicationContext(), DetailActivity.class);
                         mContext.startActivity(viewDetails);
                         Toast.makeText(mContext.getApplicationContext(), "idEscort = "+holder.idEscort, Toast.LENGTH_LONG).show();
                     }
