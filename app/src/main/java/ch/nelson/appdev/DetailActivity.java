@@ -21,15 +21,37 @@ public class DetailActivity extends AppCompatActivity {
         initializeViewPager();
     }
 
-    private void initializeViewPager() {
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+    public String[] imageUrls;
+    public ViewPager pager;
 
-        String[] imageUrls = new String[]{
-                "https://cdn.pixabay.com/photo/2016/11/11/23/34/cat-1817970_960_720.jpg",
-                "https://cdn.pixabay.com/photo/2017/12/21/12/26/glowworm-3031704_960_720.jpg",
+  /* test pour prendre les photos du serveur
+  public void chargerPhoto()
+    {
+        System.out.println("Charger photoooooooo ");
+        System.out.println("Avant  ");
+        System.out.println(imageUrls);
+        imageUrls = null;
+        String info = "escortInfo";
+        String infoPhoto = "escortInfoPhoto";
+        BackgroundWorker bgW = new BackgroundWorker(this);
+        //bgW.execute(info,Integer.toString(holder.idEscort));
+        bgW.execute(infoPhoto,"1");
+
+        System.out.println("Apres  ");
+        System.out.println(imageUrls);
+        MyPagerAdapter adapter = new MyPagerAdapter(this, imageUrls);
+        pager.setAdapter(adapter);
+    }*/
+
+
+    public void initializeViewPager() {
+        pager = (ViewPager) findViewById(R.id.pager);
+
+        imageUrls = new String[]{
+                "https://tentazione.fr/apptchoin/imageGirl/monika1.jpeg",
+                "https://tentazione.fr/apptchoin/imageGirl/monika2.jpeg"/*,
                 "https://cdn.pixabay.com/photo/2017/12/24/09/09/road-3036620_960_720.jpg",
-                "https://cdn.pixabay.com/photo/2017/11/07/00/07/fantasy-2925250_960_720.jpg",
-                "https://cdn.pixabay.com/photo/2017/10/10/15/28/butterfly-2837589_960_720.jpg"
+                "https://cdn.pixabay.com/photo/2017/10/10/15/28/butterfly-2837589_960_720.jpg"*/
         };
 
         MyPagerAdapter adapter = new MyPagerAdapter(this, imageUrls);

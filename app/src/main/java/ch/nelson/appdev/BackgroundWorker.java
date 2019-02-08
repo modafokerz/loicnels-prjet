@@ -25,6 +25,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 /**
  * Cette classe a pour but de permettre la connection a la db avec le login et le pwd
@@ -341,10 +342,6 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             splitArray = result.split("true");
             System.out.println("slipArray ============================== "+splitArray.length);
-            for(int i = 1; i< splitArray.length;i++){
-                System.out.println("slipArray["+i+"] ="+splitArray[i]);
-
-            }
 
             for(int i = 1; i< splitArray.length;i++){
                 splitArray2 = splitArray[i].split(",");
@@ -376,14 +373,21 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             splitArray = result.split("true");
 
+            System.out.println("================ escortInfoPhoto =======");
+
+            ArrayList<String> listPhoto = new ArrayList<>();
+
             for(int i = 1; i< splitArray.length;i++){
                 splitArray2 = splitArray[i].split(",");
                 System.out.println("slipArray2[1] ="+splitArray2[1]);
                 System.out.println("slipArray2[2] ="+splitArray2[2]);
+                listPhoto.add(splitArray2[1]);
                 splitArray2=null;
 
             }
 
+            //((DetailActivity) context).imageUrls = listPhoto.toArray(new String[listPhoto.size()]);
+           // ((DetailActivity) context).chargerPhoto();
             //Toast.makeText(context,splitArray.length,Toast.LENGTH_LONG).show();
 
         }
