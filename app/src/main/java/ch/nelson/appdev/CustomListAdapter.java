@@ -91,7 +91,14 @@ public class CustomListAdapter  extends ArrayAdapter<Femme> {
                     public void onClick(View v) {
                         Intent viewDetails = new Intent(mContext.getApplicationContext(), DetailsActivity.class);
                         mContext.startActivity(viewDetails);
-                        Toast.makeText(mContext.getApplicationContext(), "idEscort = "+holder.idEscort, Toast.LENGTH_LONG).show();
+
+                        String info = "escortInfo";
+                        String infoPhoto = "escortInfoPhoto";
+                        //BackgroundWorker bgW = new BackgroundWorker(mContext);
+
+                        //bgW.execute(info,Integer.toString(holder.idEscort));
+                        //bgW.execute(infoPhoto,Integer.toString(holder.idEscort));
+                        //Toast.makeText(mContext.getApplicationContext(), "idEscort = "+holder.idEscort, Toast.LENGTH_LONG).show();
                     }
                 });
 

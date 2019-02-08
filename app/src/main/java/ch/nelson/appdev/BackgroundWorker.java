@@ -51,6 +51,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         String login_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_login.php";
         String register_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_register.php";
         String afficheEscort_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_afficheEscort.php";
+        String escortInfo_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_infoEscort.php";
+        String escortInfoPhoto_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_infoEscortPhoto.php";
 
         mPreferences = context.getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
         mEditor = mPreferences.edit();
@@ -175,6 +177,83 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             return server_response;
 
         }
+        else if(type.equals("escortInfo")){
+
+            String idEscort = params[1];
+
+            try {
+                URL url = new URL(escortInfo_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+                String myData = URLEncoder.encode("idEscort","UTF-8")+"="+URLEncoder.encode(idEscort,"UTF-8");
+                bufferedWriter.write(myData);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String dataResponse = "";
+                String inputLine = "";
+                while((inputLine = bufferedReader.readLine()) != null){
+                    dataResponse += inputLine;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+                mEditor.putString("flag","escortInfo");
+                mEditor.commit();
+                return dataResponse;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if(type.equals("escortInfoPhoto")){
+
+            String idEscort = params[1];
+
+            try {
+                URL url = new URL(escortInfoPhoto_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+                String myData = URLEncoder.encode("idEscort","UTF-8")+"="+URLEncoder.encode(idEscort,"UTF-8");
+                bufferedWriter.write(myData);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String dataResponse = "";
+                String inputLine = "";
+                while((inputLine = bufferedReader.readLine()) != null){
+                    dataResponse += inputLine;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+                mEditor.putString("flag","escortInfoPhoto");
+                mEditor.commit();
+                return dataResponse;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         return null;
     }
@@ -260,8 +339,6 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             String[] splitArray = null;
             String[] splitArray2 = null;
 
-            Toast.makeText(context,result,Toast.LENGTH_LONG).show();
-
             splitArray = result.split("true");
             System.out.println("slipArray ============================== "+splitArray.length);
             for(int i = 1; i< splitArray.length;i++){
@@ -281,6 +358,33 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             }
             //context = (NavigationActivity) context;
+
+        }
+        else if(flag.equals("escortInfo")) {
+
+            String[] splitArray = null;
+
+            splitArray = result.split("4uSXa3k9");
+
+           // Toast.makeText(context,splitArray[1]+splitArray[2],Toast.LENGTH_LONG).show();
+
+        }
+        else if(flag.equals("escortInfoPhoto")) {
+
+            String[] splitArray = null;
+            String[] splitArray2 = null;
+
+            splitArray = result.split("true");
+
+            for(int i = 1; i< splitArray.length;i++){
+                splitArray2 = splitArray[i].split(",");
+                System.out.println("slipArray2[1] ="+splitArray2[1]);
+                System.out.println("slipArray2[2] ="+splitArray2[2]);
+                splitArray2=null;
+
+            }
+
+            //Toast.makeText(context,splitArray.length,Toast.LENGTH_LONG).show();
 
         }
         else
