@@ -9,12 +9,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
+
+    public ArrayList<String> imageUrls;
+    public ViewPager pager;
+    public String pseudoEscort;
+    public String corpulenceEscort;
+    public String tailleEscort;
+    public String ageEscort;
+    public String descriptionEscort;
+    public String cheveuxEscort;
+    public String origineEscort;
+    public String yeuxEscort;
+    public String certifieEscort;
+    public String disponibleEscort;
+    public String villeEscort;
+    public String npaEscort;
+    public String sexeEscort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,43 +44,83 @@ public class DetailActivity extends AppCompatActivity {
         {
             idEscort = intent.getIntExtra("idEscort",0);
             System.out.println("Id de l'escort = "+idEscort);
-        }/*
-        else {
-            idEscort = "0";
-        }*/
+        }
 
-        /* String info = "escortInfo";
+        String escortID = Integer.toString(idEscort);
+
+        imageUrls = new ArrayList<String>();
+
+        String info = "escortInfo";
         String infoPhoto = "escortInfoPhoto";
+
         BackgroundWorker bgW = new BackgroundWorker(this);
-        bgW.execute(infoPhoto,Integer.toString(idEscort));
-        //bgW.execute(infoPhoto,"1"); */
+        bgW.execute(info,escortID);
 
+        BackgroundWorker bgW2 = new BackgroundWorker(this);
+        bgW2.execute(infoPhoto,escortID);
 
-        initializeViewPager();
+        /*requeteServeur req = new requeteServeur(this);
+        req.requete(infoPhoto,"1");*/
+
+        //initializeViewPager();
     }
 
-    public ArrayList<String> imageUrls;
-    public ViewPager pager;
-
-  // test pour prendre les photos du serveur
-  public void chargerPhoto()
+    // charge les images de l'escort depuis le serveur
+    public void chargerPhoto(ArrayList<String> imageUrls)
     {
+        this.imageUrls = imageUrls;
         System.out.println("Charger photoooooooo ");
         System.out.println("imageUrls aaaaaa  ");
         System.out.println(imageUrls);
-        imageUrls = null;
         pager = (ViewPager) findViewById(R.id.pager);
         MyPagerAdapter adapter = new MyPagerAdapter(this, imageUrls);
         pager.setAdapter(adapter);
     }
 
+    // charge les informations depuis le serveur
+    public void chargerDetail(String pseudoEscort, String corpulenceEscort, String tailleEscort, String ageEscort, String descriptionEscort, String cheveuxEscort, String origineEscort, String yeuxEscort, String certifieEscort, String disponibleEscort, String villeEscort, String npaEscort, String sexeEscort) {
+        System.out.println("Charger infoooooos ");
+
+        this.pseudoEscort = pseudoEscort;
+        this.corpulenceEscort = corpulenceEscort;
+        this.tailleEscort = tailleEscort;
+        this.ageEscort = ageEscort;
+        this.descriptionEscort = descriptionEscort;
+        this.cheveuxEscort = cheveuxEscort;
+        this.origineEscort = origineEscort;
+        this.yeuxEscort = yeuxEscort;
+        this.certifieEscort = certifieEscort;
+        this.disponibleEscort = disponibleEscort;
+        this.villeEscort = villeEscort;
+        this.npaEscort = npaEscort;
+        this.sexeEscort = sexeEscort;
+
+        executeChangementDetail();
+    }
+
+    private void executeChangementDetail() {
+        TextView pseudo = (TextView) findViewById(R.id.detailPseudoEscort);
+        TextView corpulence = (TextView) findViewById(R.id.detailCorpulenceEscort);
+        TextView taille = (TextView) findViewById(R.id.detailTailleEscort);
+        TextView age = (TextView) findViewById(R.id.detailAgeEscort);
+        //TextView description = (TextView) findViewById(R.id.);
+
+        pseudo.setText(pseudoEscort);
+        corpulence.setText(corpulenceEscort);
+        taille.setText(tailleEscort);
+        age.setText(ageEscort);
+    }
 
     public void initializeViewPager() {
         pager = (ViewPager) findViewById(R.id.pager);
 
-        imageUrls = new ArrayList<String>();
+        System.out.println("photo predefiniiiii ");
+
+
         imageUrls.add("https://tentazione.fr/apptchoin/imageGirl/monika1.jpeg");
         imageUrls.add("https://tentazione.fr/apptchoin/imageGirl/monika2.jpeg");
+
+        System.out.println(imageUrls);
 
         MyPagerAdapter adapter = new MyPagerAdapter(this, imageUrls);
         pager.setAdapter(adapter);

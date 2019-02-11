@@ -363,7 +363,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             splitArray = result.split("4uSXa3k9");
 
-           // Toast.makeText(context,splitArray[1]+splitArray[2],Toast.LENGTH_LONG).show();
+            ((DetailActivity) context).chargerDetail(splitArray[1],splitArray[2],splitArray[3],splitArray[4],splitArray[5],splitArray[6],splitArray[7],splitArray[8],splitArray[9],splitArray[10],splitArray[11],splitArray[12],splitArray[13]);
+            //Toast.makeText(context,splitArray[1]+splitArray[2],Toast.LENGTH_LONG).show();
 
         }
         else if(flag.equals("escortInfoPhoto")) {
@@ -386,14 +387,14 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             }
 
-            ((DetailActivity) context).imageUrls = listPhoto;
-            ((DetailActivity) context).chargerPhoto();
+            //((DetailActivity) context).imageUrls = listPhoto;
+            ((DetailActivity) context).chargerPhoto(listPhoto);
             //Toast.makeText(context,splitArray.length,Toast.LENGTH_LONG).show();
 
         }
         else
         {
-            Toast.makeText(context,"Erreur flag 0",Toast.LENGTH_LONG).show();
+            Toast.makeText(context,"Erreur flag =>"+flag,Toast.LENGTH_LONG).show();
         }
     }
 

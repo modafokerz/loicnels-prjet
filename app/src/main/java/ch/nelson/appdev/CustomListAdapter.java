@@ -89,7 +89,7 @@ public class CustomListAdapter  extends ArrayAdapter<Femme> {
                 holder.image.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //System.out.println(holder.idEscort);
+
                         Intent viewDetails = new Intent(mContext.getApplicationContext(), DetailActivity.class);
                         viewDetails.putExtra("idEscort", holder.idEscort);
                         mContext.startActivity(viewDetails);
