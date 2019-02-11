@@ -120,4 +120,26 @@
     <string name="detailsp_de_book">Buch</string>
 
 
+    <!-- Inscription choix text -->
+    <string name="inscr_choix_fr_texte">Vous êtes...</string>
+    <string name="inscr_choix_fr_homme">Un homme</string>
+    <string name="inscr_choix_fr_escort">Une indépendante</string>
+    <string name="inscr_choix_fr_salon">Un salon</string>
+
+    <string name="inscr_choix_ita_texte">Tipo di registrazione</string>
+    <string name="inscr_choix_ita_homme">Sono un uomo</string>
+    <string name="inscr_choix_ita_escort">Sono un\'indipendente</string>
+    <string name="inscr_choix_ita_salon">Sono un salone</string>
+
+    <string name="inscr_choix_en_texte">You are...</string>
+    <string name="inscr_choix_en_homme">A man</string>
+    <string name="inscr_choix_en_escort">An independent worker</string>
+    <string name="inscr_choix_en_salon">An erotic lounge</string>
+
+    <string name="inscr_choix_de_texte">Sie sind...</string>
+    <string name="inscr_choix_de_homme">Ein Mann</string>
+    <string name="inscr_choix_de_escort">Ein unabhängiger</string>
+    <string name="inscr_choix_de_salon">Ein erotischer Salon</string>
+
+
 </resources>
