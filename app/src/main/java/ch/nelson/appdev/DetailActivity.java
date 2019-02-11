@@ -1,6 +1,7 @@
 package ch.nelson.appdev;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,30 +19,41 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        Intent intent = getIntent();
+        int idEscort = 0;
+        if (intent.hasExtra("idEscort"))
+        {
+            idEscort = intent.getIntExtra("idEscort",0);
+            System.out.println("Id de l'escort = "+idEscort);
+        }/*
+        else {
+            idEscort = "0";
+        }*/
+
+        String info = "escortInfo";
+        String infoPhoto = "escortInfoPhoto";
+        BackgroundWorker bgW = new BackgroundWorker(this);
+        bgW.execute(infoPhoto,Integer.toString(idEscort));
+        //bgW.execute(infoPhoto,"1");
+
+
         initializeViewPager();
     }
 
     public String[] imageUrls;
     public ViewPager pager;
 
-  /* test pour prendre les photos du serveur
+  // test pour prendre les photos du serveur
   public void chargerPhoto()
     {
         System.out.println("Charger photoooooooo ");
-        System.out.println("Avant  ");
+        System.out.println("imageUrls aaaaaa  ");
         System.out.println(imageUrls);
         imageUrls = null;
-        String info = "escortInfo";
-        String infoPhoto = "escortInfoPhoto";
-        BackgroundWorker bgW = new BackgroundWorker(this);
-        //bgW.execute(info,Integer.toString(holder.idEscort));
-        bgW.execute(infoPhoto,"1");
-
-        System.out.println("Apres  ");
-        System.out.println(imageUrls);
+        pager = (ViewPager) findViewById(R.id.pager);
         MyPagerAdapter adapter = new MyPagerAdapter(this, imageUrls);
         pager.setAdapter(adapter);
-    }*/
+    }
 
 
     public void initializeViewPager() {
