@@ -35,7 +35,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.nelson.appdev.NavigationActivity" />
         </activity>
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".InscriptionChoixActivity"></activity>
     </application>
 
 </manifest>

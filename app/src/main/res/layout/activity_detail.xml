@@ -34,7 +34,8 @@
 
         <TextView
             style="@style/text"
-            android:text="Details" />
+            android:text="Details"
+            android:id="@+id/dp_details_text"/>
 
         <android.support.v7.widget.GridLayout
             android:layout_width="match_parent"
@@ -80,7 +81,8 @@
 
         <TextView
             style="@style/text"
-            android:text="Services" />
+            android:text="Services"
+            android:id="@+id/dp_services_text"/>
 
         <android.support.v7.widget.GridLayout
             android:layout_width="match_parent"
@@ -127,7 +129,8 @@
 
         <TextView
             style="@style/text"
-            android:text="Langues Parlées" />
+            android:text="Langues Parlées"
+            android:id="@+id/dp_language_text"/>
 
         <android.support.v7.widget.GridLayout
             android:layout_width="match_parent"
@@ -174,21 +177,22 @@
         <TextView
             style="@style/text"
             android:text="Tarif"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:id="@+id/dp_prix_text"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingBottom="5dp"
-            android:text="110 CHF / Heure"
+            android:text="110 CHF / H"
             android:textSize="15dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/dp_btn_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Réserver"/>
 
 
     </LinearLayout>
