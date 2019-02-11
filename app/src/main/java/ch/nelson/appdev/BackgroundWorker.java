@@ -35,6 +35,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
+    private String req;
 
     BackgroundWorker (Context ctx)
     {
@@ -58,6 +59,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         mPreferences = context.getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
         mEditor = mPreferences.edit();
         mEditor.putString("flag","0");
+        req = "0";
         mEditor.commit();
 
         if(type.equals("login")){
@@ -98,7 +100,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 System.out.println(dataResponse);
 
                 mEditor.putString("flag","login");
+                req = "login";
                 mEditor.commit();
+
                 return  dataResponse;
 
             } catch (MalformedURLException e) {
@@ -138,6 +142,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 httpURLConnection.disconnect();
 
                 mEditor.putString("flag","register");
+                req = "register";
                 mEditor.commit();
                 return dataResponse;
             } catch (MalformedURLException e) {
@@ -150,6 +155,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         else if(type.equals("afficheEscort")){
 
             mEditor.putString("flag","afficheEscort");
+            req = "afficheEscort";
             mEditor.commit();
             URL url;
             HttpURLConnection urlConnection = null;
@@ -208,6 +214,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 httpURLConnection.disconnect();
 
                 mEditor.putString("flag","escortInfo");
+                req = "escortInfo";
                 mEditor.commit();
                 return dataResponse;
             } catch (MalformedURLException e) {
@@ -246,6 +253,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 httpURLConnection.disconnect();
 
                 mEditor.putString("flag","escortInfoPhoto");
+                req = "escortInfoPhoto";
                 mEditor.commit();
                 return dataResponse;
             } catch (MalformedURLException e) {
@@ -294,7 +302,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
 
-        String flag = mPreferences.getString("flag","0");
+        String flag = req;
+        // String flag = mPreferences.getString("flag","0");
 
         if(flag.equals("login")){
             String test = "false";
@@ -396,6 +405,13 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         {
             Toast.makeText(context,"Erreur flag =>"+flag,Toast.LENGTH_LONG).show();
         }
+
+        try {
+            this.finalize();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+
     }
 
     @Override
