@@ -94,9 +94,30 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
 
-
     <!-- Details page text -->
     <string name="detailsp_fr_str">Détails</string>
     <string name="detailsp_fr_services">Services</string>
+    <string name="detailsp_fr_langues">Langues Parlées</string>
+    <string name="detailsp_fr_tarif">Tarif</string>
+    <string name="detailsp_fr_book">Réserver</string>
+
+    <string name="detailsp_en_str">Details</string>
+    <string name="detailsp_en_services">Services</string>
+    <string name="detailsp_en_langues">Language</string>
+    <string name="detailsp_en_tarif">Hourly rate</string>
+    <string name="detailsp_en_book">Book now</string>
+
+    <string name="detailsp_ita_str">Dettagli</string>
+    <string name="detailsp_ita_services">Servizi</string>
+    <string name="detailsp_ita_langues">Lingue</string>
+    <string name="detailsp_ita_tarif">Tariffa oraria</string>
+    <string name="detailsp_ita_book">Prenotare</string>
+
+    <string name="detailsp_de_str">Details</string>
+    <string name="detailsp_de_services">Dienstleistungen</string>
+    <string name="detailsp_de_langues">Sprache</string>
+    <string name="detailsp_de_tarif">Stundensatz</string>
+    <string name="detailsp_de_book">Buch</string>
+
 
 </resources>
