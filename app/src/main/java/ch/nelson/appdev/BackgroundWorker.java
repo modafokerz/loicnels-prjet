@@ -386,7 +386,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             }
 
-            ((DetailActivity) context).imageUrls = listPhoto.toArray(new String[listPhoto.size()]);
+            ((DetailActivity) context).imageUrls = listPhoto;
             ((DetailActivity) context).chargerPhoto();
             //Toast.makeText(context,splitArray.length,Toast.LENGTH_LONG).show();
 

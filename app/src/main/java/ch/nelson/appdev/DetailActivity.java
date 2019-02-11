@@ -12,6 +12,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class DetailActivity extends AppCompatActivity {
 
     @Override
@@ -30,17 +32,17 @@ public class DetailActivity extends AppCompatActivity {
             idEscort = "0";
         }*/
 
-        String info = "escortInfo";
+        /* String info = "escortInfo";
         String infoPhoto = "escortInfoPhoto";
         BackgroundWorker bgW = new BackgroundWorker(this);
         bgW.execute(infoPhoto,Integer.toString(idEscort));
-        //bgW.execute(infoPhoto,"1");
+        //bgW.execute(infoPhoto,"1"); */
 
 
         initializeViewPager();
     }
 
-    public String[] imageUrls;
+    public ArrayList<String> imageUrls;
     public ViewPager pager;
 
   // test pour prendre les photos du serveur
@@ -59,12 +61,9 @@ public class DetailActivity extends AppCompatActivity {
     public void initializeViewPager() {
         pager = (ViewPager) findViewById(R.id.pager);
 
-        imageUrls = new String[]{
-                "https://tentazione.fr/apptchoin/imageGirl/monika1.jpeg",
-                "https://tentazione.fr/apptchoin/imageGirl/monika2.jpeg"/*,
-                "https://cdn.pixabay.com/photo/2017/12/24/09/09/road-3036620_960_720.jpg",
-                "https://cdn.pixabay.com/photo/2017/10/10/15/28/butterfly-2837589_960_720.jpg"*/
-        };
+        imageUrls = new ArrayList<String>();
+        imageUrls.add("https://tentazione.fr/apptchoin/imageGirl/monika1.jpeg");
+        imageUrls.add("https://tentazione.fr/apptchoin/imageGirl/monika2.jpeg");
 
         MyPagerAdapter adapter = new MyPagerAdapter(this, imageUrls);
         pager.setAdapter(adapter);
@@ -73,9 +72,9 @@ public class DetailActivity extends AppCompatActivity {
     public class MyPagerAdapter extends PagerAdapter {
 
         Context mContext;
-        String[] imageUrls;
+        ArrayList<String> imageUrls;
 
-        public MyPagerAdapter(Context context, String[] pageContents) {
+        public MyPagerAdapter(Context context, ArrayList<String> pageContents) {
             mContext = context;
             imageUrls = pageContents;
         }
@@ -85,7 +84,7 @@ public class DetailActivity extends AppCompatActivity {
 
             ImageView imageView = new ImageView(mContext);
             Picasso.get()
-                    .load(imageUrls[position])
+                    .load(imageUrls.get(position))
                     .fit()
                     .centerCrop()
                     .into(imageView);
@@ -96,7 +95,7 @@ public class DetailActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return imageUrls.length;
+            return imageUrls.size();
         }
 
         @Override
