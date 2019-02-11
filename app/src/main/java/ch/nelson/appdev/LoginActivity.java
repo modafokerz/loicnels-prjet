@@ -242,21 +242,8 @@ public class LoginActivity extends AppCompatActivity {
         /**
          * Affiche le drapeau selon le choix de langue qui a été fait.
          */
-        ;
-        switch (langPref){
-            case "fr":
-                flag.setImageResource(R.drawable.fr_flag);
-                break;
-            case "de":
-                flag.setImageResource(R.drawable.ger_flag);
-                break;
-            case "ita":
-                flag.setImageResource(R.drawable.ita_flag);
-                break;
-            case "eng":
-                flag.setImageResource(R.drawable.eng_flag);
-                break;
-        }
+
+
 
 
 
