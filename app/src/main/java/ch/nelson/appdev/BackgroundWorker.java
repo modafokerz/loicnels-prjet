@@ -31,10 +31,8 @@ import java.util.ArrayList;
  * Cette classe a pour but de permettre la connection a la db avec le login et le pwd
  */
 public class BackgroundWorker extends AsyncTask<String,Void,String> {
-    Context context;
 
-    private SharedPreferences mPreferences;
-    private SharedPreferences.Editor mEditor;
+    Context context;
     private String req;
 
     BackgroundWorker (Context ctx)
@@ -55,12 +53,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         String afficheEscort_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_afficheEscort.php";
         String escortInfo_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_infoEscort.php";
         String escortInfoPhoto_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_infoEscortPhoto.php";
+        String escortInfoService_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_infoEscortService.php";
 
-        mPreferences = context.getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
-        mEditor = mPreferences.edit();
-        mEditor.putString("flag","0");
         req = "0";
-        mEditor.commit();
 
         if(type.equals("login")){
             String loginEmail = params[1];
@@ -99,9 +94,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 System.out.println(dataResponse);
 
-                mEditor.putString("flag","login");
+
                 req = "login";
-                mEditor.commit();
 
                 return  dataResponse;
 
@@ -141,9 +135,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 inputStream.close();
                 httpURLConnection.disconnect();
 
-                mEditor.putString("flag","register");
+
                 req = "register";
-                mEditor.commit();
+
                 return dataResponse;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -154,9 +148,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         }
         else if(type.equals("afficheEscort")){
 
-            mEditor.putString("flag","afficheEscort");
+
             req = "afficheEscort";
-            mEditor.commit();
+
             URL url;
             HttpURLConnection urlConnection = null;
             String server_response="";
@@ -213,9 +207,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 inputStream.close();
                 httpURLConnection.disconnect();
 
-                mEditor.putString("flag","escortInfo");
+
                 req = "escortInfo";
-                mEditor.commit();
+
                 return dataResponse;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -252,9 +246,48 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 inputStream.close();
                 httpURLConnection.disconnect();
 
-                mEditor.putString("flag","escortInfoPhoto");
+
                 req = "escortInfoPhoto";
-                mEditor.commit();
+
+                return dataResponse;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if(type.equals("escortInfoService")){
+
+            String idEscort = params[1];
+
+            try {
+                URL url = new URL(escortInfoService_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+                String myData = URLEncoder.encode("idEscort","UTF-8")+"="+URLEncoder.encode(idEscort,"UTF-8");
+                bufferedWriter.write(myData);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String dataResponse = "";
+                String inputLine = "";
+                while((inputLine = bufferedReader.readLine()) != null){
+                    dataResponse += inputLine;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+
+                req = "escortInfoService";
+
                 return dataResponse;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -315,10 +348,6 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             password = serverResponse[2];
 
             if(test.equals("true")){
-                mEditor.putString("email",email);
-                mEditor.commit();
-                mEditor.putString("password",password);
-                mEditor.commit();
 
                 Intent intent = new Intent(context,NavigationActivity.class);
                 context.startActivity(intent);
@@ -398,6 +427,30 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             //((DetailActivity) context).imageUrls = listPhoto;
             ((DetailActivity) context).chargerPhoto(listPhoto);
+            //Toast.makeText(context,splitArray.length,Toast.LENGTH_LONG).show();
+
+        }
+        else if(flag.equals("escortInfoService")) {
+
+            String[] splitArray = null;
+            String[] splitArray2 = null;
+
+            splitArray = result.split("true");
+
+            System.out.println("================ escortInfoService =======");
+
+            ArrayList<String> listService = new ArrayList<>();
+
+            for(int i = 1; i< splitArray.length;i++){
+                splitArray2 = splitArray[i].split(",");
+                System.out.println("slipArray2[1] ="+splitArray2[1]);
+                listService.add(splitArray2[1]);
+                splitArray2=null;
+
+            }
+
+            //((DetailActivity) context).imageUrls = listPhoto;
+            ((DetailActivity) context).chargerPhoto(listService);
             //Toast.makeText(context,splitArray.length,Toast.LENGTH_LONG).show();
 
         }

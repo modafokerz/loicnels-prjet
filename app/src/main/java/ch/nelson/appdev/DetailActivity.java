@@ -80,6 +80,18 @@ public class DetailActivity extends AppCompatActivity {
         pager.setAdapter(adapter);
     }
 
+    // charge les services de l'escort depuis le serveur
+    public void chargerService(ArrayList<String> imageUrls)
+    {
+        this.imageUrls = imageUrls;
+        System.out.println("Charger photoooooooo ");
+        System.out.println("imageUrls aaaaaa  ");
+        System.out.println(imageUrls);
+        pager = (ViewPager) findViewById(R.id.pager);
+        MyPagerAdapter adapter = new MyPagerAdapter(this, imageUrls);
+        pager.setAdapter(adapter);
+    }
+
     // charge les informations depuis le serveur
     public void chargerDetail(String pseudoEscort, String corpulenceEscort, String tailleEscort, String ageEscort, String descriptionEscort, String cheveuxEscort, String origineEscort, String yeuxEscort, String certifieEscort, String disponibleEscort, String villeEscort, String npaEscort, String sexeEscort) {
         System.out.println("Charger infoooooos ");
@@ -106,12 +118,19 @@ public class DetailActivity extends AppCompatActivity {
         TextView corpulence = (TextView) findViewById(R.id.detailCorpulenceEscort);
         TextView taille = (TextView) findViewById(R.id.detailTailleEscort);
         TextView age = (TextView) findViewById(R.id.detailAgeEscort);
-        //TextView description = (TextView) findViewById(R.id.);
+        //TextView description = (TextView) findViewById(R.id.detailAgeEscort);
+        TextView cheveux = (TextView) findViewById(R.id.detailCheveuxEscort);
+        TextView origine = (TextView) findViewById(R.id.detailOrigineEscort);
+        TextView yeux = (TextView) findViewById(R.id.detailYeuxEscort);
 
         pseudo.setText(pseudoEscort);
-        corpulence.setText(corpulenceEscort);
-        taille.setText(tailleEscort);
-        age.setText(ageEscort);
+        corpulence.setText(corpulence.getText()+corpulenceEscort);
+        taille.setText(taille.getText()+tailleEscort);
+        age.setText(age.getText()+ageEscort);
+        cheveux.setText(cheveux.getText()+cheveuxEscort);
+        origine.setText(origine.getText()+origineEscort);
+        yeux.setText(yeux.getText()+yeuxEscort);
+
     }
 
     public void initializeViewPager() {
