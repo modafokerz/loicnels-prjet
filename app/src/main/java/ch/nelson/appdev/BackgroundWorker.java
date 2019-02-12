@@ -54,6 +54,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         String escortInfo_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_infoEscort.php";
         String escortInfoPhoto_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_infoEscortPhoto.php";
         String escortInfoService_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_infoEscortService.php";
+        String escortInfoLangue_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_infoEscortLangue.php";
 
         req = "0";
 
@@ -295,6 +296,45 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
         }
+        else if(type.equals("escortInfoLangue")){
+
+            String idEscort = params[1];
+
+            try {
+                URL url = new URL(escortInfoLangue_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+                String myData = URLEncoder.encode("idEscort","UTF-8")+"="+URLEncoder.encode(idEscort,"UTF-8");
+                bufferedWriter.write(myData);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String dataResponse = "";
+                String inputLine = "";
+                while((inputLine = bufferedReader.readLine()) != null){
+                    dataResponse += inputLine;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+
+                req = "escortInfoLangue";
+
+                return dataResponse;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
 
         return null;
@@ -418,8 +458,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             for(int i = 1; i< splitArray.length;i++){
                 splitArray2 = splitArray[i].split(",");
-                System.out.println("slipArray2[1] ="+splitArray2[1]);
-                System.out.println("slipArray2[2] ="+splitArray2[2]);
+                System.out.println("slipArray2[1] ="+splitArray2[1]);// la photo
+                System.out.println("slipArray2[2] ="+splitArray2[2]);// si certifié
                 listPhoto.add(splitArray2[1]);
                 splitArray2=null;
 
@@ -443,15 +483,39 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             for(int i = 1; i< splitArray.length;i++){
                 splitArray2 = splitArray[i].split(",");
-                System.out.println("slipArray2[1] ="+splitArray2[1]);
                 listService.add(splitArray2[1]);
                 splitArray2=null;
 
             }
 
             //((DetailActivity) context).imageUrls = listPhoto;
-            ((DetailActivity) context).chargerPhoto(listService);
+            ((DetailActivity) context).chargerService(listService);
             //Toast.makeText(context,splitArray.length,Toast.LENGTH_LONG).show();
+
+        }
+        else if(flag.equals("escortInfoLangue")) {
+
+            String[] splitArray = null;
+            String[] splitArray2 = null;
+
+            splitArray = result.split("true");
+
+            System.out.println("================ escortInfoLangue =======");
+
+            ArrayList<String> listLangue = new ArrayList<>();
+            ArrayList<String> listLangueNote = new ArrayList<>();
+
+            for(int i = 1; i< splitArray.length;i++){
+                splitArray2 = splitArray[i].split(",");
+                System.out.println("langue ="+splitArray2[1]);//la langue
+                System.out.println("note ="+splitArray2[2]);// la note de la langue
+                listLangue.add(splitArray2[1]);
+                listLangueNote.add(splitArray2[2]);
+                splitArray2=null;
+
+            }
+
+            ((DetailActivity) context).chargerLangue(listLangue,listLangueNote);
 
         }
         else
