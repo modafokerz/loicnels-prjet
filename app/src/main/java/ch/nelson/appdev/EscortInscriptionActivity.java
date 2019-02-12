@@ -37,7 +37,7 @@ public class EscortInscriptionActivity extends AppCompatActivity {
         pseudo = findViewById(R.id.inscr_esc_pseudoInput);
         passwd = findViewById(R.id.inscr_esc_passwdInput);
         passwd2 = findViewById(R.id.inscr_esc_passwdInput2);
-
+        translatePage();
 
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +92,7 @@ public class EscortInscriptionActivity extends AppCompatActivity {
                    return true;
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), errPassword2, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), passwd + " : " + passwd2, Toast.LENGTH_SHORT).show();
                     return false;
                 }
             }
