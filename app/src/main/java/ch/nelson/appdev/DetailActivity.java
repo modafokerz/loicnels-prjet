@@ -7,6 +7,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -53,17 +54,20 @@ public class DetailActivity extends AppCompatActivity {
 
         String info = "escortInfo";
         String infoPhoto = "escortInfoPhoto";
+        String infoServicetxt = "escortInfoService";
+        String infoLanguetxt = "escortInfoLangue";
 
         BackgroundWorker bgW = new BackgroundWorker(this);
-        bgW.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, info,escortID);
+        bgW.execute(info,escortID);
 
         BackgroundWorker bgW2 = new BackgroundWorker(this);
-        bgW2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,infoPhoto,escortID);
+        bgW2.execute(infoPhoto,escortID);
 
+        BackgroundWorker bgW3 = new BackgroundWorker(this);
+        bgW3.execute(infoServicetxt,escortID);
 
-
-
-
+        BackgroundWorker bgW4 = new BackgroundWorker(this);
+        bgW4.execute(infoLanguetxt,escortID);
 
         //initializeViewPager();
     }
@@ -81,15 +85,33 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     // charge les services de l'escort depuis le serveur
-    public void chargerService(ArrayList<String> imageUrls)
+    public void chargerService(ArrayList<String> listService)
     {
-        this.imageUrls = imageUrls;
-        System.out.println("Charger photoooooooo ");
-        System.out.println("imageUrls aaaaaa  ");
-        System.out.println(imageUrls);
-        pager = (ViewPager) findViewById(R.id.pager);
-        MyPagerAdapter adapter = new MyPagerAdapter(this, imageUrls);
-        pager.setAdapter(adapter);
+        System.out.println("Charger servicccceeeee ");
+        System.out.println(listService);
+        GridLayout gridLayout = (GridLayout) findViewById(R.id.gridLayoutService);
+        TextView txtService;
+
+        for (String service: listService) {
+            txtService = new TextView(this);
+            txtService.setText(service);
+            gridLayout.addView(txtService);
+        }
+    }
+
+    // charge les services de l'escort depuis le serveur
+    public void chargerLangue(ArrayList<String> listLangue,ArrayList<String> listLangueNote)
+    {
+        System.out.println("Charger lannnnnguuuue ");// on recoit les notes des langues mais on ne les utilise ap pour le moment
+        System.out.println(listLangue);
+        GridLayout gridLayout = (GridLayout) findViewById(R.id.gridLayoutLangue);
+        TextView txtLangue;
+
+        for (String langue: listLangue) {
+            txtLangue = new TextView(this);
+            txtLangue.setText(langue);
+            gridLayout.addView(txtLangue);
+        }
     }
 
     // charge les informations depuis le serveur
