@@ -47,32 +47,24 @@ public class InscriptionChoixActivity extends AppCompatActivity {
         String langPrefKey = getString(R.string.SP_langPref_Key);
         String langPref = mPreferences.getString(langPrefKey,"");
 
-        switch(langPref){
-            case "en":
-                topText.setText(R.string.inscr_choix_en_texte);
-                hommeText.setText(R.string.inscr_choix_en_homme);
-                escortText.setText(R.string.inscr_choix_en_escort);
-                salonText.setText(R.string.inscr_choix_en_salon);
-                break;
-            case "de":
-                topText.setText(R.string.inscr_choix_de_texte);
-                hommeText.setText(R.string.inscr_choix_de_homme);
-                escortText.setText(R.string.inscr_choix_de_escort);
-                salonText.setText(R.string.inscr_choix_de_salon);
-                break;
-            case "ita":
-                topText.setText(R.string.inscr_choix_ita_texte);
-                hommeText.setText(R.string.inscr_choix_ita_homme);
-                escortText.setText(R.string.inscr_choix_ita_escort);
-                salonText.setText(R.string.inscr_choix_ita_salon);
-                break;
-            default:
-                topText.setText(R.string.inscr_choix_fr_texte);
-                hommeText.setText(R.string.inscr_choix_fr_homme);
-                escortText.setText(R.string.inscr_choix_fr_escort);
-                salonText.setText(R.string.inscr_choix_fr_salon);
-                break;
-        }
+
+        topText.setText(getStringFromResourcesByName("inscr_choix_"+langPref+"_texte"));
+        hommeText.setText(getStringFromResourcesByName("inscr_choix_"+langPref+"_homme"));
+        escortText.setText(getStringFromResourcesByName("inscr_choix_"+langPref+"_escort"));
+        salonText.setText(getStringFromResourcesByName("inscr_choix_"+langPref+"_salon"));
+
+    }
+
+    private String getStringFromResourcesByName(String resourceName){
+
+        // Get the application package name
+        String packageName = getPackageName();
+
+        // Get the string resource id by name
+        int resourceId = getResources().getIdentifier(resourceName,"string",packageName);
+
+        // Return the string value
+        return getString(resourceId);
     }
 
     private void initializeClickListeners(){
@@ -82,6 +74,22 @@ public class InscriptionChoixActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent defaultInscription = new Intent(getApplicationContext(), InscriptionActivity.class);
+                startActivity(defaultInscription);
+            }
+        });
+
+        escortImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent defaultInscription = new Intent(getApplicationContext(), EscortInscriptionActivity.class);
+                startActivity(defaultInscription);
+            }
+        });
+
+        salonImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent defaultInscription = new Intent(getApplicationContext(), EscortInscriptionActivity.class);
                 startActivity(defaultInscription);
             }
         });

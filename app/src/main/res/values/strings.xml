@@ -142,4 +142,33 @@
     <string name="inscr_choix_de_salon">Ein erotischer Salon</string>
 
 
+
+    <!-- Inscription escort -->
+    <string name="inscr_esc_fr_pseudo">Pseudo</string>
+    <string name="inscr_esc_fr_suivant">Suivant</string>
+    <string name="inscr_esc_pb_fr_info">Informations</string>
+    <string name="inscr_esc_pb_fr_contact">Contact</string>
+    <string name="inscr_esc_pb_fr_photos">Photos</string>
+
+    <string name="inscr_esc_ita_pseudo">Username</string>
+    <string name="inscr_esc_ita_suivant">Prossimo</string>
+    <string name="inscr_esc_pb_ita_info">Informazioni</string>
+    <string name="inscr_esc_pb_ita_contact">Contatto</string>
+    <string name="inscr_esc_pb_ita_photos">Fotos</string>
+
+    <string name="inscr_esc_de_pseudo">Username</string>
+    <string name="inscr_esc_de_suivant">Nach</string>
+    <string name="inscr_esc_pb_de_info">Informationen</string>
+    <string name="inscr_esc_pb_de_contact">Kontakt</string>
+    <string name="inscr_esc_pb_de_photos">Fotos</string>
+
+    <string name="inscr_esc_en_pseudo">Username</string>
+    <string name="inscr_esc_en_suivant">Next</string>
+    <string name="inscr_esc_pb_en_info">Information</string>
+    <string name="inscr_esc_pb_en_contact">Contact</string>
+    <string name="inscr_esc_pb_en_photos">Pictures</string>
+
+
+
+
 </resources>

@@ -13,17 +13,21 @@ public class EscortInscription2Activity extends AppCompatActivity {
 
     private Spinner spinner;
     private Spinner spinnerTaille;
+    private Spinner spinnerCheveux;
 
+    private Escort escort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escort_inscription2);
 
+        escort = (Escort) getIntent().getSerializableExtra("escort");
 
         // Remplissage du premier spinner : origine.
         spinner = (Spinner) findViewById(R.id.inscr_escort2_spinner_categorie);
         spinnerTaille = (Spinner) findViewById(R.id.inscr_escort2_spinner_taille);
+        spinnerCheveux = (Spinner) findViewById(R.id.inscr_escort2_spinner_cheveux);
 
         List exempleList = new ArrayList();
         exempleList.add("Européenne");
@@ -60,14 +64,35 @@ public class EscortInscription2Activity extends AppCompatActivity {
                 exempleList2
         );
 
+
+        List exempleList3 = new ArrayList();
+        exempleList3.add("Blonde");
+        exempleList3.add("Châtain");
+        exempleList3.add("Brune");
+        exempleList3.add("Gris");
+        exempleList3.add("Rouge/Rousse");
+
+        ArrayAdapter adapter3 = new ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item,
+                exempleList3
+        );
+
         /* On definit une présentation du spinner quand il est déroulé         (android.R.layout.simple_spinner_dropdown_item) */
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Enfin on passe l'adapter au Spinner et c'est tout
         spinner.setAdapter(adapter);
         spinner.setPrompt("Choisissez votre origine");
         spinnerTaille.setAdapter(adapter2);
         spinnerTaille.setPrompt("Choisissez votre taille");
+        spinnerCheveux.setAdapter(adapter3);
+        spinnerCheveux.setPrompt("Votre couleur de cheveux");
+
+
+
+
 
     }
 }

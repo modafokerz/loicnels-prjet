@@ -8,56 +8,56 @@
     tools:layout_editor_absoluteY="81dp">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/inscr_esc_emailInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="E-Mail"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_esc_pseudoInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.124"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/inscr_esc_progressLogin" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/inscr_esc_pseudoInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Pseudo"
+        android:hint="@string/inscr_esc_fr_pseudo"
         android:inputType="text|textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_esc_passwdInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.124"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/inscr_esc_emailInput" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/inscr_esc_passwdInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Mot de passe"
+        android:hint="@string/inscription_fr_passwd"
         android:inputType="textEmailAddress|textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/editText4"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_esc_passwdInput2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.124"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/inscr_esc_pseudoInput" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/inscr_esc_passwdInput2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Retapez le mot de passe"
+        android:hint="@string/inscription_fr_passwd2"
         android:inputType="textEmailAddress|textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_esc_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.124"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/inscr_esc_passwdInput" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -66,67 +66,69 @@
         android:layout_height="32dp"
         android:max="100"
         android:progress="20"
-        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_esc_progressLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/inscr_esc_progressLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toStartOf="@+id/textView14"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_esc_emailInput"
+        app:layout_constraintEnd_toStartOf="@+id/inscr_esc_progressInfo"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/inscr_esc_progressInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Informations"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_esc_emailInput"
+        app:layout_constraintEnd_toStartOf="@+id/inscr_esc_progressContact"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintStart_toEndOf="@+id/inscr_esc_progressLogin"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintVertical_bias="0.456" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/inscr_esc_progressContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contact"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toStartOf="@+id/textView16"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_esc_emailInput"
+        app:layout_constraintEnd_toStartOf="@+id/inscr_esc_progressPhotos"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintStart_toEndOf="@+id/inscr_esc_progressInfo"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintVertical_bias="0.456" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/inscr_esc_progressPhotos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Photos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintStart_toEndOf="@+id/inscr_esc_progressContact"
         app:layout_constraintTop_toBottomOf="@+id/progressBar"
         app:layout_constraintVertical_bias="0.059" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/inscr_esc_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Suivant"
+        android:text="@string/inscr_esc_fr_suivant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/inscr_esc_passwdInput2" />
 
 
 </android.support.constraint.ConstraintLayout>

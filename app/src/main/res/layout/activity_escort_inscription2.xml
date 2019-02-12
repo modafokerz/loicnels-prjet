@@ -10,96 +10,117 @@
     <ProgressBar
         android:id="@+id/progressBar2"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="352dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="28dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="29dp"
         android:max="100"
         android:progress="40"
-        app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_categorie"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_esc_progressLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/inscr_esc_progressLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
         android:text="Login"
-        app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_categorie"
-        app:layout_constraintEnd_toStartOf="@+id/textView14"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_esc_progressContact"
+        app:layout_constraintEnd_toStartOf="@+id/inscr_esc_progressInfo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/inscr_esc_progressInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Informations"
-        app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_categorie"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/inscr_esc_progressLogin"
+        app:layout_constraintEnd_toStartOf="@+id/inscr_esc_progressContact"
+        app:layout_constraintStart_toEndOf="@+id/inscr_esc_progressLogin" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/inscr_esc_progressContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="43dp"
         android:text="Contact"
         app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_categorie"
-        app:layout_constraintEnd_toStartOf="@+id/textView16"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+        app:layout_constraintEnd_toStartOf="@+id/inscr_esc_progressPhotos"
+        app:layout_constraintStart_toEndOf="@+id/inscr_esc_progressInfo"
+        app:layout_constraintTop_toBottomOf="@+id/inscr_esc_progressLogin" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/inscr_esc_progressPhotos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Photos"
-        app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_categorie"
+        app:layout_constraintBaseline_toBaselineOf="@+id/inscr_esc_progressContact"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+        app:layout_constraintStart_toEndOf="@+id/inscr_esc_progressContact" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/inscr_esc_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="51dp"
+        android:layout_marginBottom="28dp"
         android:text="Suivant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inscr_escort2_spinner_taille" />
+        app:layout_constraintTop_toBottomOf="@+id/inscr_escort2_spinner_cheveux" />
 
     <Spinner
         android:id="@+id/inscr_escort2_spinner_categorie"
-        android:layout_width="327dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="19dp"
         android:text="[Origine...]"
         app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_taille"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+        app:layout_constraintTop_toBottomOf="@+id/inscr_esc_progressContact" />
 
     <Spinner
         android:id="@+id/inscr_escort2_spinner_taille"
-        android:layout_width="327dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="232dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="21dp"
         android:text="[Taille...]"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_cheveux"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inscr_escort2_spinner_categorie" />
+
+    <Spinner
+        android:id="@+id/inscr_escort2_spinner_cheveux"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="184dp"
+        android:text="[Taille...]"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_esc_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inscr_escort2_spinner_taille" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -53,51 +53,15 @@ public class InscriptionActivity extends AppCompatActivity {
          */
         emailInput.setHint("E-mail");
 
-        switch(langPref){
-            case "en":
-                topText.setText(getString(R.string.inscription_en_str));
-                nextBtn.setText(getString(R.string.inscription_en_str));
-                passwdInput.setHint(getString(R.string.inscription_en_passwd));
-                passwdInput2.setHint(getString(R.string.inscription_en_passwd2));
-                errEmpty = getString(R.string.inscription_en_err_empty);
-                errEmail = getString(R.string.inscription_en_err_email);
-                errPassword = getString(R.string.inscription_en_err_passwd);
-                errPassword2 = getString(R.string.inscription_en_err_passwd2);
-                break;
-            case "de":
-                topText.setText(getString(R.string.inscription_de_str));
-                nextBtn.setText(getString(R.string.inscription_de_str));
-                passwdInput.setHint(getString(R.string.inscription_de_passwd));
-                passwdInput2.setHint(getString(R.string.inscription_de_passwd2));
-                errEmpty = getString(R.string.inscription_de_err_empty);
-                errEmail = getString(R.string.inscription_de_err_email);
-                errPassword = getString(R.string.inscription_de_err_passwd);
-                errPassword2 = getString(R.string.inscription_de_err_passwd2);
-                break;
-            case "ita":
-                topText.setText(getString(R.string.inscription_ita_str));
-                nextBtn.setText(getString(R.string.inscription_ita_str));
-                passwdInput.setHint(getString(R.string.inscription_ita_passwd));
-                passwdInput2.setHint(getString(R.string.inscription_ita_passwd2));
-                errEmpty = getString(R.string.inscription_ita_err_empty);
-                errEmail = getString(R.string.inscription_ita_err_email);
-                errPassword = getString(R.string.inscription_ita_err_passwd);
-                errPassword2 = getString(R.string.inscription_ita_err_passwd2);
-                break;
-            default:
-                topText.setText(getString(R.string.inscription_fr_str));
-                nextBtn.setText(getString(R.string.inscription_fr_str));
-                passwdInput.setHint(getString(R.string.inscription_fr_passwd));
-                passwdInput2.setHint(getString(R.string.inscription_fr_passwd2));
-                errEmpty = getString(R.string.inscription_fr_err_empty);
-                errEmail = getString(R.string.inscription_fr_err_email);
-                errPassword = getString(R.string.inscription_fr_err_passwd);
-                errPassword2 = getString(R.string.inscription_fr_err_passwd2);
-                break;
-        }
 
-
-
+        topText.setText(getStringFromResourcesByName("inscription_"+langPref+"_str"));
+        nextBtn.setText(getStringFromResourcesByName("inscription_"+langPref+"_str"));
+        passwdInput.setHint(getStringFromResourcesByName("inscription_"+langPref+"_passwd"));
+        passwdInput2.setHint(getStringFromResourcesByName("inscription_"+langPref+"_passwd2"));
+        errEmpty = getStringFromResourcesByName("inscription_"+langPref+"_err_empty");
+        errEmail = getStringFromResourcesByName("inscription_"+langPref+"_err_email");
+        errPassword = getStringFromResourcesByName("inscription_"+langPref+"_err_passwd");
+        errPassword2 = getStringFromResourcesByName("inscription_"+langPref+"_err_passwd2");
 
         /**
          * Ajoute l'action au bouton next et test les valeurs entrées :
@@ -153,5 +117,18 @@ public class InscriptionActivity extends AppCompatActivity {
             return false;
 
         return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
+    private String getStringFromResourcesByName(String resourceName){
+
+        // Get the application package name
+        String packageName = getPackageName();
+
+
+        // Get the string resource id by name
+        int resourceId = getResources().getIdentifier(resourceName,"string",packageName);
+
+        // Return the string value
+        return getString(resourceId);
     }
 }
