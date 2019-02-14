@@ -13,7 +13,7 @@
         android:layout_width="352dp"
         android:layout_height="19dp"
         android:max="100"
-        android:progress="40"
+        android:progress="65"
         app:layout_constraintBottom_toTopOf="@+id/inscr_esc_progressLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_categorie"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_escort3_tarifHoraire"
         app:layout_constraintEnd_toStartOf="@+id/inscr_esc_progressInfo"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Informations"
-        app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_categorie"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_escort3_tarifHoraire"
         app:layout_constraintEnd_toStartOf="@+id/inscr_esc_progressContact"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/inscr_esc_progressLogin"
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contact"
-        app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_categorie"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_escort3_tarifHoraire"
         app:layout_constraintEnd_toStartOf="@+id/inscr_esc_progressPhotos"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/inscr_esc_progressInfo"
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Photos"
-        app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_categorie"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_escort3_tarifHoraire"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/inscr_esc_progressContact"
@@ -76,17 +76,6 @@
         app:layout_constraintTop_toBottomOf="@+id/inscr_escort2_spinner_coulYeux" />
 
     <Spinner
-        android:id="@+id/inscr_escort2_spinner_categorie"
-        android:layout_width="328dp"
-        android:layout_height="14dp"
-        android:text="[Origine...]"
-        app:layout_constraintBottom_toTopOf="@+id/inscr_escort3_spinner_mobilite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inscr_esc_progressLogin" />
-
-    <Spinner
         android:id="@+id/inscr_escort3_spinner_mobilite"
         android:layout_width="328dp"
         android:layout_height="19dp"
@@ -95,13 +84,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inscr_escort2_spinner_categorie" />
+        app:layout_constraintTop_toBottomOf="@+id/inscr_escort3_tarifHoraire" />
 
-    <Spinner
-        android:id="@+id/inscr_escort2_spinner_silhouette"
-        android:layout_width="329dp"
-        android:layout_height="23dp"
-        android:text="[Taille...]"
+    <ch.nelson.appdev.MultiSelectionSpinner
+        android:id="@+id/mySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_coulYeux"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -117,18 +105,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inscr_escort2_spinner_silhouette" />
+        app:layout_constraintTop_toBottomOf="@+id/mySpinner" />
 
     <Spinner
         android:id="@+id/inscr_escort3_spinner_languesParlees"
         android:layout_width="328dp"
         android:layout_height="19dp"
         android:text="[Taille...]"
-        app:layout_constraintBottom_toTopOf="@+id/inscr_escort2_spinner_silhouette"
+        app:layout_constraintBottom_toTopOf="@+id/mySpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inscr_escort3_spinner_mobilite" />
+
+    <EditText
+        android:id="@+id/inscr_escort3_tarifHoraire"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Tarif Horaire. Exemple : 110"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inscr_escort3_spinner_mobilite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inscr_esc_progressLogin" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -3,7 +3,6 @@ package ch.nelson.appdev;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -14,6 +13,8 @@ public class EscortInscription2Activity extends AppCompatActivity {
     private Spinner spinner;
     private Spinner spinnerTaille;
     private Spinner spinnerCheveux;
+    private Spinner spinnerSilhouette;
+    private Spinner spinnerCoulYeux;
 
     private Escort escort;
 
@@ -26,8 +27,10 @@ public class EscortInscription2Activity extends AppCompatActivity {
 
         // Remplissage du premier spinner : origine.
         spinner = (Spinner) findViewById(R.id.inscr_escort2_spinner_categorie);
-        spinnerTaille = (Spinner) findViewById(R.id.inscr_escort2_spinner_taille);
-        spinnerCheveux = (Spinner) findViewById(R.id.inscr_escort2_spinner_cheveux);
+        spinnerTaille = (Spinner) findViewById(R.id.inscr_escort3_spinner_mobilite);
+        spinnerCheveux = (Spinner) findViewById(R.id.inscr_escort3_spinner_languesParlees);
+        spinnerSilhouette = (Spinner) findViewById(R.id.inscr_escort2_spinner_silhouette);
+        spinnerCoulYeux = (Spinner) findViewById(R.id.inscr_escort2_spinner_coulYeux);
 
         List exempleList = new ArrayList();
         exempleList.add("Européenne");
@@ -78,10 +81,44 @@ public class EscortInscription2Activity extends AppCompatActivity {
                 exempleList3
         );
 
+
+        List silhouetteList = new ArrayList();
+        silhouetteList.add("Fine");
+        silhouetteList.add("Mince");
+        silhouetteList.add("Normale");
+        silhouetteList.add("Sportive");
+        silhouetteList.add("Pulpeuse");
+        silhouetteList.add("Ronde");
+
+        ArrayAdapter adapter4 = new ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item,
+                silhouetteList
+        );
+
+        List couleurYeux = new ArrayList();
+        couleurYeux.add("Noir");
+        couleurYeux.add("Marron");
+        couleurYeux.add("Vert");
+        couleurYeux.add("Bleu");
+        couleurYeux.add("Gris");
+
+
+        ArrayAdapter adapter5 = new ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item,
+                couleurYeux
+        );
+
         /* On definit une présentation du spinner quand il est déroulé         (android.R.layout.simple_spinner_dropdown_item) */
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+
         //Enfin on passe l'adapter au Spinner et c'est tout
         spinner.setAdapter(adapter);
         spinner.setPrompt("Choisissez votre origine");
@@ -89,6 +126,10 @@ public class EscortInscription2Activity extends AppCompatActivity {
         spinnerTaille.setPrompt("Choisissez votre taille");
         spinnerCheveux.setAdapter(adapter3);
         spinnerCheveux.setPrompt("Votre couleur de cheveux");
+        spinnerSilhouette.setAdapter(adapter4);
+        spinnerCoulYeux.setAdapter(adapter5);
+        spinnerCoulYeux.setPrompt("Votre couleur des yeux");
+        spinnerSilhouette.setPrompt("Votre silhouette");
 
 
 
