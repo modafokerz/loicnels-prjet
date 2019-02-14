@@ -22,6 +22,7 @@ public class EscortInscription3Activity extends AppCompatActivity implements Mul
         multiSelectionSpinner.setItems(array);
         multiSelectionSpinner.setSelection(new int[]{2, 6});
         multiSelectionSpinner.setListener(this);
+        multiSelectionSpinner.setListener(this);
     }
 
     @Override

@@ -116,6 +116,7 @@ public class EscortInscription2Activity extends AppCompatActivity {
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
 

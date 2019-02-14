@@ -26,6 +26,7 @@ public class MultiSelectionSpinner extends android.support.v7.widget.AppCompatSp
     boolean[] mSelection = null;
     boolean[] mSelectionAtStart = null;
     String _itemsAtStart = null;
+    String _itemsAtStartt = null;
 
     ArrayAdapter<String> simple_adapter;
 

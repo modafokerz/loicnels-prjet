@@ -39,7 +39,8 @@
         <activity android:name=".InscriptionChoixActivity" />
         <activity android:name=".EscortInscriptionActivity" />
         <activity android:name=".EscortInscription2Activity" />
-        <activity android:name=".EscortInscription3Activity"></activity>
+        <activity android:name=".EscortInscription3Activity" />
+        <activity android:name=".EscortInscription4Activity"></activity>
     </application>
 
 </manifest>
