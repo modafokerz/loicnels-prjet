@@ -50,6 +50,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         String type = params[0];
         String login_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_login.php";
         String register_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_register.php";
+        String registerEscort_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_registerEscort.php";
         String afficheEscort_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_afficheEscort.php";
         String escortInfo_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_infoEscort.php";
         String escortInfoPhoto_url = "http://y54uotiox.preview.infomaniak.website/apptchoin/connection_infoEscortPhoto.php";
@@ -339,9 +340,19 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         else if(type.equals("registerEscort")){
             String regEmail = params[1];
             String regPassword = params[2];
+            String regPseudo = params[3];
+            String regNom = params[4];
+            String regPrenom = params[5];
+            String regCoruplence = params[6];
+            String regTaille = params[7];
+            String regDescription = params[8];
+            String regCheveux = params[9];
+            String regOrigine = params[10];
+            String regYeux = params[11];
+            String regAdresse = params[12];
 
             try {
-                URL url = new URL(register_url);
+                URL url = new URL(registerEscort_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
@@ -367,7 +378,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 httpURLConnection.disconnect();
 
 
-                req = "register";
+                req = "registerEscort";
 
                 return dataResponse;
             } catch (MalformedURLException e) {
